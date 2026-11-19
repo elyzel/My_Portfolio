@@ -109,3 +109,49 @@ a,
 nav a {
     transition: color .2s ease, border-color .2s ease, background-color .2s ease;
 }
+
+/* Hero rain */
+
+.hero-backdrop {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+}
+
+.hero-backdrop > .hero {
+    position: relative;
+    z-index: 2;
+}
+
+.hero-rain {
+    position: absolute;
+    z-index: 1;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 55%, transparent 100%);
+    mask-image: linear-gradient(to bottom, #000 0%, #000 55%, transparent 100%);
+}
+
+@media (prefers-color-scheme: dark) {
+    .hero-backdrop::before,
+    .hero-backdrop::after {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        content: "";
+    }
+
+    .hero-backdrop::before {
+        background:
+            radial-gradient(ellipse at 0% 25%, color-mix(in srgb, var(--mint) 2.5%, transparent), transparent 62%),
+            radial-gradient(ellipse at 100% 16%, color-mix(in srgb, var(--mint) 2.5%, transparent), transparent 52%),
+            radial-gradient(ellipse at 30% 47%, color-mix(in srgb, var(--mint) 2%, transparent), transparent 53%);
+    }
+
+    .hero-backdrop::after {
+        opacity: .03;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='144' height='144'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.78' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+}

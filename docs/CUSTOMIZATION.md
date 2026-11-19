@@ -39,7 +39,12 @@ Edite a ordem do menu no `<nav>` de `index.html`. Cada `href` deve apontar para 
 
 ### 3. Links de Contato
 
-Edite os três `.contact-card` de `#contato` no `index.html`. Para o e-mail, atualize o `mailto:` e o texto de `#contact-email-link`, que alimenta o botão Copiar. Atualize a URL e o valor visível de cada perfil social. Para trocar o currículo, aponte o `href` para o PDF e defina em `download` o nome que será salvo.
+Edite os quatro `.contact-card` de `#contato` em `index.html`.
+
+- **E-mail** — Atualize o `mailto:`, o endereço visível e o `data-copy` do botão.
+- **WhatsApp** — Atualize os dígitos com código do país no caminho `https://wa.me/<numero>`. Atualize o número visível, o `aria-label` do link e o número internacional formatado em `data-copy`. Para trocar a mensagem, use `encodeURIComponent(mensagem)` e substitua o valor após `?text=`.
+- **Cópia** — `data-copy` fornece o texto copiado. `data-copy-label` fornece o nome usado no anúncio após a cópia.
+- **Perfis e currículo** — Atualize a URL e o texto visível de cada perfil. Para trocar o currículo, aponte `href` para o PDF e defina em `download` o nome que será salvo.
 
 ---
 
@@ -225,6 +230,22 @@ Use um `id` único para o link `#projetos/novo-projeto`. Campos como `logo`, `pr
 ---
 
 ## 🎬 Customizando Animações
+
+### Chuva digital do hero
+
+Ajuste a constante `CONFIG` em `assets/js/digital-rain.js`.
+
+| Parâmetro | Valor atual |
+|-----------|-------------|
+| `layers` fundo | Fonte 11 px, intervalo 14 px, rastro de 0,085–0,105, ponta +0,08, velocidade 20–70 px/s |
+| `layers` frente | Fonte 16 px, intervalo 18 px, rastro de 0,12–0,135, ponta +0,10, velocidade 30–110 px/s |
+| `activeFraction`, `trailLength` | 0,5 das colunas e 10–16 células por rastro |
+| `restartDelay`, `glyphChangesPerSecond` | Pausa de 0,2–1,4 s entre quedas e chance de 2% por segundo de trocar cada caractere |
+| `calmPadding`, `calmAlpha` | Margem suave de 24 px e multiplicador de 0,45 sobre o texto |
+| `fps`, `mobileFps`, `maxDpr` | Limites de 60 e 30 quadros/s e densidade 1,5 |
+| `maxDelta`, `resizeDelay` | Intervalo máximo de 0,05 s por atualização e debounce de 150 ms |
+
+Para clarear ou enfraquecer a chuva por tema, ajuste `--rain-alpha-scale` em `variables.css`. Para mudar apenas uma camada, ajuste sua faixa `trailAlpha` ou o brilho `headBoost`. Mantenha a zona calma e confira o contraste do texto depois de aumentar a opacidade.
 
 ### Desabilitando Animações
 

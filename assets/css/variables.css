@@ -18,6 +18,9 @@
     --button-hover-text: #ffffff;
     --accent: #086957;           /* Cor de destaque/acento */
     
+    --rain-color: var(--accent);
+    --rain-alpha-scale: .5;
+
     /* Stage (área de demonstração) */
     --stage: #102b29;            /* Fundo da área de stage */
     --stage-text: #ebfaf3;       /* Texto no stage */
@@ -47,6 +50,9 @@
         --line: #374d47;
         --accent: #94e4ca;
         
+        --rain-color: var(--mint);
+        --rain-alpha-scale: 1;
+
         /* Stage e outras cores mantêm os mesmos valores */
     }
 }

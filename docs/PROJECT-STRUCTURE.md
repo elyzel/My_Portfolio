@@ -23,8 +23,10 @@ My Portfolio/
 │   │
 │   └── 📁 js/                             # Scripts JavaScript
 │       ├── site-navigation.js            # Seção ativa e altura do cabeçalho
-│       ├── scroll-animations.js          # Palcos e cópia de e-mail
-│       └── projects.js                   # Vitrine, detalhes e navegação
+│       ├── scroll-animations.js          # Palcos das demonstrações
+│       ├── projects.js                   # Vitrine, detalhes e navegação
+│       ├── digital-rain.js               # Canvas decorativo do hero
+│       └── contact.js                    # Botões de cópia do contato
 │
 └── 📁 docs/                                # Documentação completa
     ├── 📘 README.md                       # Documentação principal
@@ -38,7 +40,7 @@ My Portfolio/
 
 ## 📏 Tamanho dos Arquivos
 
-`index.html` carrega seis folhas de estilo e três scripts. Cada módulo tem um papel descrito na árvore acima. O currículo é um PDF servido diretamente pela página.
+`index.html` carrega seis folhas de estilo e cinco scripts. Cada módulo tem um papel descrito na árvore acima. O currículo é um PDF servido diretamente pela página.
 
 ---
 
@@ -64,7 +66,7 @@ My Portfolio/
 
 1. O `<head>` carrega as fontes e as seis folhas de estilo.
 2. O `<main>` contém Sobre (`#inicio`), Experiência, Stack, Projetos e Contato. O template dos cards e os templates dos palcos ficam junto de Projetos.
-3. Após o rodapé, `site-navigation.js` observa as seções. `scroll-animations.js` registra os controladores das demonstrações. `projects.js` usa esses controladores ao montar a seleção.
+3. Após o rodapé, `site-navigation.js` observa as seções. `scroll-animations.js` registra os controladores das demonstrações. `projects.js` usa esses controladores ao montar a seleção. `digital-rain.js` é carregado com `defer` e controla o canvas do hero. `contact.js` gerencia os botões de cópia e os anúncios de sucesso ou erro.
 
 ---
 
@@ -74,11 +76,11 @@ My Portfolio/
 
 | Seção | Componentes |
 |-------|-------------|
-| Sobre | Hero com apresentação e botões Ver projetos e Falar comigo |
+| Sobre | Hero com apresentação, chuva digital e botões Ver projetos e Falar comigo |
 | Experiência | Linha do tempo profissional |
 | Stack | Linguagens, web, ferramentas e automação, segurança |
 | Projetos | Vitrine, setas, indicadores, painel e demonstração sob demanda |
-| Contato | Cards de E-mail, LinkedIn e GitHub e download centralizado do currículo |
+| Contato | Cards de E-mail e WhatsApp com cópia, LinkedIn e GitHub, e download centralizado do currículo |
 
 ---
 

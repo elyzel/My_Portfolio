@@ -71,16 +71,19 @@
     <!-- Main Content -->
     <main>
         <!-- Hero Section -->
-        <div class="wrap hero" id="inicio">
-            <h1>
-                <span>Segurança desde</span>
-                <span>a primeira linha</span>
-                <span>de código.</span>
-            </h1>
-            <p>Estudante de Engenharia de Software no Inatel e estagiário em Segurança da Informação. Busco minha primeira vaga como desenvolvedor.</p>
-            <div class="actions">
-                <a class="button primary" href="#projetos">Ver projetos</a>
-                <a class="button" href="#contato">Falar comigo</a>
+        <div class="hero-backdrop">
+            <canvas class="hero-rain" aria-hidden="true"></canvas>
+            <div class="wrap hero" id="inicio">
+                <h1>
+                    <span>Segurança desde</span>
+                    <span>a primeira linha</span>
+                    <span>de código.</span>
+                </h1>
+                <p>Estudante de Engenharia de Software no Inatel e estagiário em Segurança da Informação. Busco minha primeira vaga como desenvolvedor.</p>
+                <div class="actions">
+                    <a class="button primary" href="#projetos">Ver projetos</a>
+                    <a class="button" href="#contato">Falar comigo</a>
+                </div>
             </div>
         </div>
 
@@ -463,13 +466,29 @@ k8*X#x9!c@24Q?&</pre>
             <div class="wrap">
                 <h2 id="contact-title">Contato</h2>
                 <div class="contact-cards">
-                    <div class="contact-card contact-email">
+                    <div class="contact-card contact-linked contact-email">
                         <span class="contact-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="m4 7 8 6 8-6"/></svg></span>
                         <div class="contact-details">
                             <span class="contact-label">E-mail</span>
-                            <a class="contact-value" id="contact-email-link" href="mailto:eliseu.marinho1982@gmail.com">eliseu.marinho1982@gmail.com</a>
+                            <a class="contact-value contact-main-link" href="mailto:eliseu.marinho1982@gmail.com">eliseu.marinho1982@gmail.com</a>
                         </div>
-                        <button class="button contact-copy" type="button" aria-label="Copiar e-mail" hidden>Copiar</button>
+                        <button type="button" class="contact-copy" data-copy="eliseu.marinho1982@gmail.com" data-copy-label="E-mail" aria-label="Copiar e-mail">
+                            <svg class="contact-copy-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 4H6a2 2 0 0 0-2 2v10"/></svg>
+                            <svg class="contact-copy-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg>
+                            <span class="contact-copy-text">Copiar</span>
+                        </button>
+                    </div>
+                    <div class="contact-card contact-linked contact-whatsapp">
+                        <span class="contact-icon"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.28-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.25-.46-2.38-1.47-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.61.13-.13.3-.35.44-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.66-1.62-.91-2.21-.24-.58-.49-.5-.67-.51l-.56-.01c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48 0 1.47 1.06 2.88 1.21 3.08.15.2 2.1 3.2 5.08 4.49.71.31 1.27.49 1.7.63.71.23 1.37.2 1.88.12.57-.09 1.76-.72 2.01-1.41.25-.7.25-1.3.17-1.42-.07-.13-.27-.2-.57-.35M12.05 21.8a9.8 9.8 0 0 1-5.01-1.37l-.36-.21-3.72.98 1-3.63-.24-.37a9.85 9.85 0 1 1 8.33 4.6m8.39-18.22A11.87 11.87 0 0 0 1.9 17.67L.2 23.8l6.3-1.65a11.87 11.87 0 0 0 5.55 1.41h.01A11.86 11.86 0 0 0 20.44 3.58"/></svg></span>
+                        <div class="contact-details">
+                            <span class="contact-label">WhatsApp</span>
+                            <a class="contact-value contact-main-link" href="https://wa.me/5545998512728?text=Ol%C3%A1%2C%20Eliseu!%20Vi%20seu%20portf%C3%B3lio%20e%20gostaria%20de%20conversar." target="_blank" rel="noopener noreferrer" aria-label="WhatsApp, (45) 99851-2728. Abre em nova aba.">(45) 99851-2728</a>
+                        </div>
+                        <button type="button" class="contact-copy" data-copy="+55 45 99851-2728" data-copy-label="Telefone" aria-label="Copiar telefone">
+                            <svg class="contact-copy-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 4H6a2 2 0 0 0-2 2v10"/></svg>
+                            <svg class="contact-copy-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg>
+                            <span class="contact-copy-text">Copiar</span>
+                        </button>
                     </div>
                     <a class="contact-card contact-social" href="https://www.linkedin.com/in/eliseu-marinho/">
                         <span class="contact-icon"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="6" cy="6" r="1.6"/><path d="M4.5 9h3v10h-3zm5.5 0h2.9v1.4A3.7 3.7 0 0 1 16 8.8c2.6 0 3.5 1.7 3.5 4V19h-3v-5.5c0-1.3-.3-2.2-1.6-2.2-1.4 0-1.9 1-1.9 2.2V19h-3z"/></svg></span>
@@ -508,5 +527,7 @@ k8*X#x9!c@24Q?&</pre>
     <script src="assets/js/site-navigation.js"></script>
     <script src="assets/js/scroll-animations.js"></script>
     <script src="assets/js/projects.js"></script>
+    <script src="assets/js/digital-rain.js" defer></script>
+    <script src="assets/js/contact.js"></script>
 </body>
 </html>

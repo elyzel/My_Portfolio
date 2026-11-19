@@ -21,11 +21,11 @@ Este é um portfólio profissional desenvolvido seguindo as **melhores práticas
 
 ### 📋 Seções do Portfólio
 
-1. **Sobre** (`#inicio`) — Apresentação e acesso rápido a Projetos e Contato.
+1. **Sobre** (`#inicio`) — Apresentação com chuva binária discreta no fundo e acesso rápido a Projetos e Contato.
 2. **Experiência** — Histórico profissional.
 3. **Stack** — Linguagens, web, ferramentas, automação e segurança.
 4. **Projetos** — Vitrine de cards do Salom Finance e do SafeVoice. Ao selecionar um card, o painel abre com navegação circular entre os projetos.
-5. **Contato** — Cards de E-mail, LinkedIn e GitHub, seguidos pelo download do currículo.
+5. **Contato** — Cards de E-mail e WhatsApp com botões de cópia, seguidos por LinkedIn, GitHub e download do currículo.
 
 ---
 
@@ -47,8 +47,10 @@ My Portfolio/
 │   │
 │   └── js/                    # Scripts
 │       ├── site-navigation.js # Seção ativa e altura do cabeçalho
-│       ├── scroll-animations.js # Palcos e cópia de e-mail
-│       └── projects.js        # Dados, vitrine, painel e navegação
+│       ├── scroll-animations.js # Palcos das demonstrações
+│       ├── projects.js        # Dados, vitrine, painel e navegação
+│       ├── digital-rain.js    # Fundo binário do hero
+│       └── contact.js         # Cópia de e-mail e telefone
 │
 └── 📁 docs/                   # Documentação completa
     ├── README.md             # Doc principal
@@ -118,7 +120,7 @@ Use Anterior, Próximo, os indicadores ou as setas do teclado com foco na seçã
 ### Características Técnicas
 
 - 🎨 **CSS Modular**: 6 arquivos especializados
-- ⚡ **IntersectionObserver** — Destaca a seção ativa e detecta a entrada do palco na área visível
+- ⚡ **IntersectionObserver** — Destaca a seção ativa, detecta a entrada dos palcos e pausa a chuva fora do hero
 - 📱 **Mobile First**: Design responsivo
 - ♿ **A11Y**: Navegação por teclado e leitores de tela
 - 🌓 **Auto Theme**: Tema claro/escuro automático
@@ -246,7 +248,7 @@ O cabeçalho destaca a seção visível. A altura medida compensa a rolagem por 
 ## 📊 Estatísticas
 
 - **Arquivos CSS**: 6
-- **Arquivos JS**: 3
+- **Arquivos JS**: 5
 - **Componentes**: 12+
 - **Seções**: 5
 - **Documentação**: ~6.500 palavras

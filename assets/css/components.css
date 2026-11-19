@@ -289,9 +289,32 @@
     background: var(--panel);
 }
 
-.contact-email {
-    grid-column: 1 / -1;
+/* Link de contato ocupa o card, com o botão de cópia acima dele. */
+.contact-linked {
+    position: relative;
+    container-type: inline-size;
     grid-template-columns: auto minmax(0, 1fr) auto;
+}
+
+.contact-linked .contact-details,
+.contact-main-link {
+    border-radius: inherit;
+}
+
+.contact-main-link::after {
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    content: "";
+}
+
+.contact-main-link:focus-visible {
+    outline: none;
+}
+
+.contact-linked:has(.contact-main-link:focus-visible) {
+    outline: 3px solid var(--accent);
+    outline-offset: 4px;
 }
 
 .contact-social {
@@ -299,7 +322,8 @@
 }
 
 .contact-social:hover,
-.contact-email:focus-within {
+.contact-linked:hover,
+.contact-linked:focus-within {
     border-color: var(--accent);
 }
 
@@ -338,20 +362,84 @@ a.contact-value {
     text-underline-offset: .16em;
 }
 
+.contact-linked:hover .contact-main-link,
 a.contact-value:hover,
 .contact-social:hover .contact-value {
     text-decoration: underline;
     text-underline-offset: .16em;
 }
 
+/* O estado muda sem alterar a largura ou o nome acessível do botão. */
 .contact-copy {
-    min-width: 4.65rem;
-    padding-inline: .55rem;
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: 1rem auto;
+    align-self: start;
+    place-content: center;
+    align-items: center;
+    gap: .4rem;
+    min-width: 6.15rem;
+    min-height: 2.5rem;
+    padding: .35rem .5rem;
+    border: 1px solid var(--line);
+    border-radius: .5rem;
+    background: transparent;
+    color: var(--ink);
+    font: inherit;
     font-size: .875rem;
+    line-height: 1;
+    cursor: pointer;
 }
 
-.contact-copy[hidden] {
-    display: none;
+.contact-copy:hover,
+.contact-copy[data-copied] {
+    border-color: var(--accent);
+}
+
+.contact-copy[data-copied] {
+    color: var(--accent);
+}
+
+.contact-copy svg {
+    grid-area: 1 / 1;
+    width: 1rem;
+    height: 1rem;
+}
+
+.contact-copy-text {
+    grid-area: 1 / 2;
+    white-space: nowrap;
+}
+
+.contact-copy-check,
+.contact-copy[data-copied] .contact-copy-icon {
+    opacity: 0;
+    scale: .85;
+}
+
+.contact-copy[data-copied] .contact-copy-check {
+    opacity: 1;
+    scale: 1;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .contact-copy svg {
+        transition: opacity .15s ease, scale .15s ease;
+    }
+}
+
+@media (width > 42rem) {
+    @container (width < 22rem) {
+        .contact-copy {
+            grid-template-columns: 1rem;
+            min-width: 2.5rem;
+        }
+
+        .contact-copy-text {
+            display: none;
+        }
+    }
 }
 
 .contact-copy-status:not([data-copy-error]) {

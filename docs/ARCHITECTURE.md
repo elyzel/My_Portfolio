@@ -134,8 +134,20 @@ animations.css (camada de polimento)
 | Arquivo | Responsabilidade |
 |---------|------------------|
 | `site-navigation.js` | Observa as seções logo abaixo do cabeçalho com `IntersectionObserver` e atualiza `aria-current="true"` no menu. Mede a altura real do cabeçalho com `ResizeObserver`. |
-| `scroll-animations.js` | Monta e desmonta os palcos e mantém a ação de copiar e-mail. Carrega Three.js r128 ao chegar ao palco do Salom em uma tela compatível. |
+| `scroll-animations.js` | Monta e desmonta os palcos. Carrega Three.js r128 ao chegar ao palco do Salom em uma tela compatível. |
 | `projects.js` | Gera cards e painéis a partir de `#project-template`. Controla seleção, histórico, foco, setas, indicadores e swipe. |
+| `digital-rain.js` | Desenha o fundo do hero em um canvas 2D decorativo, carregado com `defer`. |
+| `contact.js` | Delega a cópia dos valores em `data-copy`. Usa Clipboard API em contexto seguro e um `textarea` temporário como alternativa. |
+
+#### Ações de contato
+
+O link principal cobre os cards de e-mail e WhatsApp. O botão de cópia fica fora do link e acima da área clicável. A ordem de foco segue link e botão. Cada botão tem seu temporizador, e a região `role="status"` anuncia o resultado da ação mais recente.
+
+#### Chuva digital do hero
+
+Duas camadas usam atlas de `0` e `1`, estados em arrays tipados e limpeza integral do canvas antes de cada quadro. A zona calma mede o título, o parágrafo e as ações. O fundo e o texto mantêm os tokens e as dimensões do site.
+
+O `ResizeObserver` agenda a medição após 150 ms. `IntersectionObserver` e `visibilitychange` pausam o laço. O tema atualiza a cor dos atlas e a escala de opacidade. Com movimento reduzido, o canvas mostra um quadro estático.
 
 #### Estado da seção Projetos
 
