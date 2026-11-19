@@ -1,0 +1,462 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="description" content="Projetos e experiência de Eliseu Marinho em desenvolvimento de software, segurança da informação e automação.">
+    <title>Eliseu Marinho | Portfólio</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="assets/css/variables.css">
+    <link rel="stylesheet" href="assets/css/base.css">
+    <link rel="stylesheet" href="assets/css/layout.css">
+    <link rel="stylesheet" href="assets/css/components.css">
+    <link rel="stylesheet" href="assets/css/projects.css">
+    <link rel="stylesheet" href="assets/css/animations.css">
+</head>
+<body>
+    <!-- SVG Symbols -->
+    <svg width="0" height="0" aria-hidden="true" style="position:absolute">
+        <symbol id="safevoice-scene" viewBox="0 0 480 285">
+            <rect x="200" y="21" width="254" height="161" rx="14" fill="#173733" stroke="var(--stage-line)"/>
+            <path d="M231 21v161m55-161v161m55-161v161m55-161v161M200 56h254M200 101h254M200 146h254" stroke="var(--stage-line)" opacity=".65"/>
+            <path d="m205 133 42-24 45 12 65-46 50 7 42-22m-249 99 50-19 46 17 46-27 49 13 62-29m-190-92 24 39-12 38m108-77-10 38 30 34-22 38" fill="none" stroke="#5a8075" opacity=".45" stroke-width="2"/>
+            <rect x="28" y="23" width="135" height="239" rx="22" fill="#0b211f" stroke="#73948a" stroke-width="2"/>
+            <rect x="39" y="37" width="113" height="210" rx="15" fill="#193a36"/>
+            <path d="M84 45h23M83 237h25" stroke="#73948a" stroke-width="3" stroke-linecap="round"/>
+            <rect class="alert-glow" x="163" y="95" width="7" height="34" rx="3.5" fill="var(--signal)"/>
+            <circle class="alert-glow" cx="95" cy="119" r="33" fill="#512e31" stroke="var(--signal)" stroke-width="1.5"/>
+            <text x="95" y="125" text-anchor="middle">SOS</text>
+            <text x="95" y="181" text-anchor="middle" class="graphic-muted">SafeVoice</text>
+            <path d="M171 112h147" stroke="var(--stage-line)" stroke-width="3"/>
+            <path class="signal-line" d="M171 112h147" pathLength="1" stroke="var(--signal)" stroke-width="3"/>
+            <g class="location-pin">
+                <circle cx="327" cy="113" r="28" fill="none" stroke="var(--signal)" opacity=".35"/>
+                <path d="M327 119c-10-13-16-20-16-29a16 16 0 1 1 32 0c0 9-6 16-16 29Z" fill="var(--signal)"/>
+                <circle cx="327" cy="90" r="5" fill="var(--stage)"/>
+            </g>
+            <g fill="none" stroke="var(--stage-muted)" stroke-width="2" opacity=".36">
+                <circle cx="264" cy="220" r="16"/><circle cx="327" cy="220" r="16"/><circle cx="390" cy="220" r="16"/>
+            </g>
+            <g class="notification">
+                <path d="M327 183v15m-63 6v-6h126v6" fill="none" stroke="var(--mint)" stroke-width="2"/>
+                <g fill="var(--mint)">
+                    <circle cx="264" cy="220" r="16"/><circle cx="327" cy="220" r="16"/><circle cx="390" cy="220" r="16"/>
+                </g>
+                <path d="m257 220 5 5 9-10m49 5 5 5 9-10m49 5 5 5 9-10" fill="none" stroke="var(--stage)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </g>
+            <text x="327" y="261" text-anchor="middle" class="graphic-muted">Contatos de confiança</text>
+        </symbol>
+    </svg>
+
+    <!-- Header -->
+    <header>
+        <div class="wrap header-inner">
+            <a class="brand" href="#inicio">Eliseu Marinho</a>
+            <nav aria-label="Navegação principal">
+                <a href="#projetos">Projetos</a>
+                <a href="#experiencia">Experiência</a>
+                <a href="#stack">Stack</a>
+                <a href="#contato">Contato</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <div class="wrap hero" id="inicio">
+            <h1>
+                <span>Segurança desde</span>
+                <span>a primeira linha</span>
+                <span>de código.</span>
+            </h1>
+            <p>Estudante de Engenharia de Software no Inatel e estagiário em Segurança da Informação. Busco minha primeira vaga como desenvolvedor.</p>
+            <div class="actions">
+                <a class="button primary" href="#projetos">Ver projetos</a>
+                <a class="button" href="#contato">Falar comigo</a>
+            </div>
+        </div>
+
+        <!-- SafeVoice Project Section -->
+        <section class="section" id="projetos" aria-labelledby="safevoice-title">
+            <div class="wrap">
+                <div class="project-header">
+                    <div>
+                        <p class="meta"><span class="award">2º lugar na FETIN 2026</span><span>Python • Dart • Flutter</span></p>
+                        <h2 id="safevoice-title">SafeVoice</h2>
+                    </div>
+                    <p class="intro">Protótipo de segurança pessoal que envia a localização em tempo real e avisa contatos de confiança quando um alerta de emergência é acionado.</p>
+                </div>
+                <div class="story">
+                    <ol class="steps" role="list">
+                        <li class="step">
+                            <h3>Acionar o alerta</h3>
+                            <p>O botão de volume ou de ligar do celular aciona o alerta de emergência.</p>
+                            <figure class="stage step-stage" aria-hidden="true">
+                                <svg viewBox="0 0 480 285" aria-hidden="true"><use href="#safevoice-scene"/></svg>
+                            </figure>
+                        </li>
+                        <li class="step">
+                            <h3>Enviar a localização</h3>
+                            <p>O alerta inclui a localização em tempo real para que os contatos saibam onde a pessoa está.</p>
+                            <figure class="stage step-stage stage-location" aria-hidden="true">
+                                <svg viewBox="0 0 480 285" aria-hidden="true"><use href="#safevoice-scene"/></svg>
+                            </figure>
+                        </li>
+                        <li class="step">
+                            <h3>Notificar os contatos</h3>
+                            <p>Os contatos de confiança recebem a notificação de emergência.</p>
+                            <figure class="stage step-stage stage-contacts" aria-hidden="true">
+                                <svg viewBox="0 0 480 285" aria-hidden="true"><use href="#safevoice-scene"/></svg>
+                            </figure>
+                        </li>
+                    </ol>
+                    <figure class="stage sticky-stage" aria-hidden="true">
+                        <svg viewBox="0 0 480 285" aria-hidden="true"><use href="#safevoice-scene"/></svg>
+                        <figcaption>Acionar o alerta</figcaption>
+                    </figure>
+                </div>
+            </div>
+        </section>
+
+        <!-- Salom Finance Project Section -->
+        <section class="section salom" id="salom" aria-labelledby="salom-title">
+            <div class="wrap">
+                <div class="project-header sf-header">
+                    <div>
+                        <p class="meta">Projeto pessoal · Aplicação web · Python</p>
+                        <h2 id="salom-title">Salom Finance</h2>
+                    </div>
+                    <div class="sf-intro">
+                        <p class="intro">Monte seu orçamento mensal e acompanhe quanto sobra depois das despesas. Registre transações manualmente ou importe um extrato em PDF. O Salom usa palavras-chave das descrições para categorizar gastos, como Mercado e Lazer.</p>
+                        <p class="intro">Registre também seus aportes em CDB e ações negociadas na bolsa e acompanhe a evolução do patrimônio investido em um painel mensal.</p>
+                        <div class="actions">
+                            <a class="button" href="https://github.com/elyzel/Salom_Finance">Ver código no GitHub</a>
+                            <span class="sf-sample">Dados fictícios</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="sf-story">
+                    <ol class="sf-steps" role="list">
+                        <li class="sf-step">
+                            <h3>Suas finanças, só suas.</h3>
+                            <p>O Salom Finance ajuda a organizar as finanças domésticas. Os registros são guardados em um arquivo criptografado.</p>
+                            <div class="sf-mini sf-scene-0">
+                                <div class="sf-art sf-object" aria-hidden="true"><div class="sf-paper"><b>PDF</b><i></i><i></i><i></i></div></div>
+                                <div class="sf-card sf-opening">
+                                    <span class="sf-lock"><svg viewBox="0 0 40 48" aria-hidden="true"><path class="sf-shackle" d="M10 23V14a10 10 0 0 1 20 0v9"/><rect x="3" y="21" width="34" height="24" rx="6"/><path d="M20 30v6"/></svg></span>
+                                    <div><strong>Finanças domésticas</strong><p>Dados guardados em arquivo criptografado</p></div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="sf-step">
+                            <h3>Um extrato vira histórico.</h3>
+                            <p>Importe um extrato bancário em PDF para registrar e categorizar os lançamentos a partir das descrições. Você também pode lançar à mão.</p>
+                            <div class="sf-mini sf-scene-1">
+                                <div class="sf-art sf-object" aria-hidden="true"><div class="sf-paper"><b>PDF</b><i></i><i></i><i></i></div></div>
+                                <div class="sf-card">
+                                    <p class="sf-kicker">Manual ou por extrato</p>
+                                    <ul class="sf-ledger" role="list">
+                                        <li><span><mark>Supermercado</mark> Central <small>Mercado</small></span><b>−R$ 420,00</b></li>
+                                        <li><span><mark>Cinema</mark> Shopping <small>Lazer</small></span><b>−R$ 120,00</b></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="sf-step">
+                            <h3>Guarde para uma meta.</h3>
+                            <p>Defina um valor, registre o que guardou e acompanhe o percentual concluído. No exemplo, cada mês acrescenta R$ 100 à meta de viagem.</p>
+                            <div class="sf-mini sf-scene-2">
+                                <div class="sf-art sf-object" aria-hidden="true"><div class="sf-cube"><i></i><span>✈️</span></div></div>
+                                <div class="sf-card">
+                                    <p class="sf-kicker">Viagem para Dubai · R$ 100.000</p>
+                                    <div class="sf-metric"><strong class="sf-goal-number">100%</strong><span class="sf-goal-state">Meta concluída</span></div>
+                                    <div class="sf-meter"><i></i></div>
+                                    <p class="sf-contribution">+R$ 100 por mês · tempo acelerado</p>
+                                </div>
+                                <div class="sf-confetti" aria-hidden="true">
+                                    <i style="--x:50px;--y:0px;--angle:0deg"></i><i style="--x:-40px;--y:32px;--angle:29deg"></i><i style="--x:5px;--y:-51px;--angle:58deg"></i><i style="--x:38px;--y:43px;--angle:87deg"></i><i style="--x:-65px;--y:-10px;--angle:116deg"></i><i style="--x:59px;--y:-32px;--angle:145deg"></i><i style="--x:-19px;--y:61px;--angle:174deg"></i><i style="--x:-36px;--y:-59px;--angle:203deg"></i><i style="--x:77px;--y:24px;--angle:232deg"></i><i style="--x:-80px;--y:27px;--angle:261deg"></i><i style="--x:38px;--y:-68px;--angle:290deg"></i><i style="--x:28px;--y:74px;--angle:319deg"></i><i style="--x:-85px;--y:-41px;--angle:348deg"></i><i style="--x:100px;--y:-18px;--angle:377deg"></i>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="sf-step">
+                            <h3>Saiba quanto sobra.</h3>
+                            <p>Compare receita fixa, despesas fixas e aportes para saber quanto fica disponível no mês.</p>
+                            <div class="sf-mini sf-scene-3">
+                                <div class="sf-art sf-object" aria-hidden="true"><div class="sf-donut"></div></div>
+                                <div class="sf-card">
+                                    <p class="sf-kicker">Orçamento mensal</p>
+                                    <dl class="sf-budget">
+                                        <div><dt>Receita fixa</dt><dd>R$ 3.200,00</dd></div>
+                                        <div><dt>Despesas fixas · 16,9%</dt><dd>R$ 540,00</dd></div>
+                                        <div><dt>Aportes · 15,6%</dt><dd>R$ 500,00</dd></div>
+                                    </dl>
+                                    <div class="sf-metric"><strong>R$ 2.160,00</strong><span>Disponível</span></div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="sf-step">
+                            <h3>Mude o período do painel.</h3>
+                            <p>Veja a movimentação de transações em períodos diário, trimestral, semestral e anual. A linha mostra a evolução do patrimônio registrado.</p>
+                            <div class="sf-mini sf-scene-4">
+                                <div class="sf-dashboard">
+                                    <div class="sf-dashboard-art" aria-hidden="true">
+                                        <svg class="sf-plot" viewBox="0 0 360 118" aria-hidden="true">
+                                            <path class="sf-grid" d="M14 20h332M14 55h332M14 90h332"/>
+                                            <path class="sf-line sf-line-wealth" pathLength="1" d="M20 97C70 90 126 75 180 65S278 39 340 20"/>
+                                        </svg>
+                                        <div class="sf-bars">
+                                            <i style="--bar:42%"></i><i style="--bar:69%"></i><i style="--bar:49%"></i><i style="--bar:80%"></i><i style="--bar:57%"></i><i style="--bar:89%"></i>
+                                        </div>
+                                    </div>
+                                    <div class="sf-card">
+                                        <p class="sf-kicker">Movimentação de transações</p>
+                                        <ul class="sf-periods" role="list">
+                                            <li>Diário</li><li>Trimestral</li><li>Semestral</li><li aria-current="true">Anual</li>
+                                        </ul>
+                                        <p>Patrimônio registrado · Jan R$ 1.200 → Fev R$ 1.500 → Mar R$ 2.000</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="sf-step">
+                            <h3>Acompanhe os investimentos.</h3>
+                            <p>Registre aportes em CDB e ações da bolsa. Cada tipo de investimento tem sua própria meta no painel de patrimônio.</p>
+                            <div class="sf-mini sf-scene-5">
+                                <div class="sf-graph-art" aria-hidden="true">
+                                    <svg class="sf-plot" viewBox="0 0 360 124">
+                                        <path class="sf-grid" d="M20 20h320M20 55h320M20 90h320"/>
+                                        <path class="sf-target" d="M20 20h320"/><path class="sf-target sf-target-stock" d="M20 47h320"/>
+                                        <path class="sf-line sf-line-cdb" pathLength="1" d="M20 91C77 91 119 75 180 74S281 43 340 39"/>
+                                        <path class="sf-line sf-line-stock" pathLength="1" d="M20 107C72 107 123 94 180 95S284 70 340 67"/>
+                                        <g class="sf-points"><circle cx="20" cy="91" r="4"/><circle cx="180" cy="74" r="4"/><circle cx="340" cy="39" r="4"/></g>
+                                        <g class="sf-points sf-points-stock"><circle cx="20" cy="107" r="4"/><circle cx="180" cy="95" r="4"/><circle cx="340" cy="67" r="4"/></g>
+                                    </svg>
+                                    <div class="sf-months"><span>Jan</span><span>Fev</span><span>Mar</span></div>
+                                </div>
+                                <div class="sf-card">
+                                    <p class="sf-kicker">Patrimônio registrado</p>
+                                    <div class="sf-metric"><strong class="sf-wealth-value">R$ 2.000</strong><span>Jan R$ 1.200 · Fev R$ 1.500</span></div>
+                                    <ul class="sf-series" role="list">
+                                        <li>CDB · aporte de R$ 300 · meta própria</li>
+                                        <li>Ações · aporte de R$ 200 · meta própria</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="sf-step">
+                            <h3>Seus dados são seus.</h3>
+                            <p>O arquivo criptografado pode ser importado no Salom com a chave correta. Aberto sozinho no Bloco de Notas, ele mostra caracteres ilegíveis.</p>
+                            <div class="sf-mini sf-scene-6">
+                                <div class="sf-notepad">
+                                    <div><b>Bloco de Notas</b><span>financas.salom</span></div>
+                                    <pre class="sf-cipher" aria-label="Demonstração de conteúdo ilegível">f3#%s8&!W2$g#x?9
+$dF7!^a25?z2@qE
+k8*X#x9!c@24Q?&</pre>
+                                </div>
+                                <div class="sf-card sf-unlock">
+                                    <span class="sf-lock"><svg viewBox="0 0 40 48" aria-hidden="true"><path class="sf-shackle" d="M10 23V14a10 10 0 0 1 20 0v9"/><rect x="3" y="21" width="34" height="24" rx="6"/><path d="M20 30v6"/></svg></span>
+                                    <div><strong>Só o Salom lê</strong><p>Importação com a chave · registros restaurados</p><span class="sf-restored">2 lançamentos · saldo R$ 2.160,00</span></div>
+                                    <span class="sf-file-icon" aria-hidden="true"><svg viewBox="0 0 24 28"><path d="M4 1h10l6 6v19H4zM14 1v7h6M8 15h8m-8 5h8"/></svg></span>
+                                </div>
+                                <p class="sf-closing">Seus dados são seus. O arquivo, sozinho, não diz nada.</p>
+                            </div>
+                        </li>
+                    </ol>
+                    <figure class="sf-stage" aria-label="Demonstração do Salom Finance">
+                        <div class="sf-viewport">
+                            <div class="sf-scene sf-scene-0" aria-hidden="false">
+                                <div class="sf-art sf-object" aria-hidden="true"><div class="sf-paper"><b>PDF</b><i></i><i></i><i></i></div></div>
+                                <div class="sf-card sf-opening">
+                                    <span class="sf-lock"><svg viewBox="0 0 40 48" aria-hidden="true"><path class="sf-shackle" d="M10 23V14a10 10 0 0 1 20 0v9"/><rect x="3" y="21" width="34" height="24" rx="6"/><path d="M20 30v6"/></svg></span>
+                                    <div><strong>Finanças domésticas</strong><p>Dados guardados em arquivo criptografado</p></div>
+                                </div>
+                            </div>
+                            <div class="sf-scene sf-scene-1" aria-hidden="true">
+                                <div class="sf-art sf-object" aria-hidden="true"><div class="sf-paper"><b>PDF</b><i></i><i></i><i></i></div></div>
+                                <div class="sf-card">
+                                    <p class="sf-kicker">Manual ou por extrato</p>
+                                    <ul class="sf-ledger" role="list">
+                                        <li><span><mark>Supermercado</mark> Central <small>Mercado</small></span><b>−R$ 420,00</b></li>
+                                        <li><span><mark>Cinema</mark> Shopping <small>Lazer</small></span><b>−R$ 120,00</b></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="sf-scene sf-scene-2" aria-hidden="true">
+                                <div class="sf-art sf-object" aria-hidden="true"><div class="sf-cube"><i></i><span>✈️</span></div></div>
+                                <div class="sf-card">
+                                    <p class="sf-kicker">Viagem para Dubai · R$ 100.000</p>
+                                    <div class="sf-metric"><strong class="sf-goal-number">100%</strong><span class="sf-goal-state">Meta concluída</span></div>
+                                    <div class="sf-meter"><i></i></div>
+                                    <p class="sf-contribution">+R$ 100 por mês · tempo acelerado</p>
+                                </div>
+                                <div class="sf-confetti" aria-hidden="true">
+                                    <i style="--x:50px;--y:0px;--angle:0deg"></i><i style="--x:-40px;--y:32px;--angle:29deg"></i><i style="--x:5px;--y:-51px;--angle:58deg"></i><i style="--x:38px;--y:43px;--angle:87deg"></i><i style="--x:-65px;--y:-10px;--angle:116deg"></i><i style="--x:59px;--y:-32px;--angle:145deg"></i><i style="--x:-19px;--y:61px;--angle:174deg"></i><i style="--x:-36px;--y:-59px;--angle:203deg"></i><i style="--x:77px;--y:24px;--angle:232deg"></i><i style="--x:-80px;--y:27px;--angle:261deg"></i><i style="--x:38px;--y:-68px;--angle:290deg"></i><i style="--x:28px;--y:74px;--angle:319deg"></i><i style="--x:-85px;--y:-41px;--angle:348deg"></i><i style="--x:100px;--y:-18px;--angle:377deg"></i>
+                                </div>
+                            </div>
+                            <div class="sf-scene sf-scene-3" aria-hidden="true">
+                                <div class="sf-art sf-object" aria-hidden="true"><div class="sf-donut"></div></div>
+                                <div class="sf-card">
+                                    <p class="sf-kicker">Orçamento mensal</p>
+                                    <dl class="sf-budget">
+                                        <div><dt>Receita fixa</dt><dd>R$ 3.200,00</dd></div>
+                                        <div><dt>Despesas fixas · 16,9%</dt><dd>R$ 540,00</dd></div>
+                                        <div><dt>Aportes · 15,6%</dt><dd>R$ 500,00</dd></div>
+                                    </dl>
+                                    <div class="sf-metric"><strong>R$ 2.160,00</strong><span>Disponível</span></div>
+                                </div>
+                            </div>
+                            <div class="sf-scene sf-scene-4" aria-hidden="true">
+                                <div class="sf-dashboard">
+                                    <div class="sf-dashboard-art" aria-hidden="true">
+                                        <svg class="sf-plot" viewBox="0 0 360 118" aria-hidden="true">
+                                            <path class="sf-grid" d="M14 20h332M14 55h332M14 90h332"/>
+                                            <path class="sf-line sf-line-wealth" pathLength="1" d="M20 97C70 90 126 75 180 65S278 39 340 20"/>
+                                        </svg>
+                                        <div class="sf-bars">
+                                            <i style="--bar:42%"></i><i style="--bar:69%"></i><i style="--bar:49%"></i><i style="--bar:80%"></i><i style="--bar:57%"></i><i style="--bar:89%"></i>
+                                        </div>
+                                    </div>
+                                    <div class="sf-card">
+                                        <p class="sf-kicker">Movimentação de transações</p>
+                                        <ul class="sf-periods" role="list">
+                                            <li>Diário</li><li>Trimestral</li><li>Semestral</li><li aria-current="true">Anual</li>
+                                        </ul>
+                                        <p>Patrimônio registrado · Jan R$ 1.200 → Fev R$ 1.500 → Mar R$ 2.000</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="sf-scene sf-scene-5" aria-hidden="true">
+                                <div class="sf-graph-art" aria-hidden="true">
+                                    <svg class="sf-plot" viewBox="0 0 360 124">
+                                        <path class="sf-grid" d="M20 20h320M20 55h320M20 90h320"/>
+                                        <path class="sf-target" d="M20 20h320"/><path class="sf-target sf-target-stock" d="M20 47h320"/>
+                                        <path class="sf-line sf-line-cdb" pathLength="1" d="M20 91C77 91 119 75 180 74S281 43 340 39"/>
+                                        <path class="sf-line sf-line-stock" pathLength="1" d="M20 107C72 107 123 94 180 95S284 70 340 67"/>
+                                        <g class="sf-points"><circle cx="20" cy="91" r="4"/><circle cx="180" cy="74" r="4"/><circle cx="340" cy="39" r="4"/></g>
+                                        <g class="sf-points sf-points-stock"><circle cx="20" cy="107" r="4"/><circle cx="180" cy="95" r="4"/><circle cx="340" cy="67" r="4"/></g>
+                                    </svg>
+                                    <div class="sf-months"><span>Jan</span><span>Fev</span><span>Mar</span></div>
+                                </div>
+                                <div class="sf-card">
+                                    <p class="sf-kicker">Patrimônio registrado</p>
+                                    <div class="sf-metric"><strong class="sf-wealth-value">R$ 2.000</strong><span>Jan R$ 1.200 · Fev R$ 1.500</span></div>
+                                    <ul class="sf-series" role="list">
+                                        <li>CDB · aporte de R$ 300 · meta própria</li>
+                                        <li>Ações · aporte de R$ 200 · meta própria</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="sf-scene sf-scene-6" aria-hidden="true">
+                                <div class="sf-notepad">
+                                    <div><b>Bloco de Notas</b><span>financas.salom</span></div>
+                                    <pre class="sf-cipher" aria-label="Demonstração de conteúdo ilegível">f3#%s8&!W2$g#x?9
+$dF7!^a25?z2@qE
+k8*X#x9!c@24Q?&</pre>
+                                </div>
+                                <div class="sf-card sf-unlock">
+                                    <span class="sf-lock"><svg viewBox="0 0 40 48" aria-hidden="true"><path class="sf-shackle" d="M10 23V14a10 10 0 0 1 20 0v9"/><rect x="3" y="21" width="34" height="24" rx="6"/><path d="M20 30v6"/></svg></span>
+                                    <div><strong>Só o Salom lê</strong><p>Importação com a chave · registros restaurados</p><span class="sf-restored">2 lançamentos · saldo R$ 2.160,00</span></div>
+                                    <span class="sf-file-icon" aria-hidden="true"><svg viewBox="0 0 24 28"><path d="M4 1h10l6 6v19H4zM14 1v7h6M8 15h8m-8 5h8"/></svg></span>
+                                </div>
+                                <p class="sf-closing">Seus dados são seus. O arquivo, sozinho, não diz nada.</p>
+                            </div>
+                        </div>
+                        <figcaption class="sf-caption"><span>Suas finanças, só suas.</span><span class="sf-count" aria-hidden="true">1 / 7</span></figcaption>
+                    </figure>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience Section -->
+        <section class="section" id="experiencia" aria-labelledby="experience-title">
+            <div class="wrap experience">
+                <h2 id="experience-title">Experiência</h2>
+                <ol class="timeline" role="list">
+                    <li class="timeline-item">
+                        <h3>Soldado</h3>
+                        <p class="meta"><span>Exército Brasileiro</span><span>1 ano e 4 meses</span></p>
+                        <p class="intro">Serviço militar obrigatório, com atuação como secretário. Organização de documentos, controle de registros e atendimento ao público.</p>
+                    </li>
+                    <li class="timeline-item">
+                        <h3>Jovem Aprendiz de TI</h3>
+                        <p class="meta"><span>Grupo Muffato</span><span>1 ano e 8 meses</span></p>
+                        <p class="intro">Suporte de TI ao público interno, manutenção de equipamentos e instalação de softwares corporativos.</p>
+                    </li>
+                    <li class="timeline-item timeline-current">
+                        <h3>Estagiário em Segurança da Informação</h3>
+                        <p class="meta"><span>Instituto Nacional de Telecomunicações (Inatel)</span><span class="period">Atual</span></p>
+                        <p class="intro">Análise de vulnerabilidades, homologação de aplicações web e desktop e automação de processos com Power Automate.</p>
+                    </li>
+                </ol>
+            </div>
+        </section>
+
+        <!-- Stack Section -->
+        <section class="section" id="stack" aria-labelledby="stack-title">
+            <div class="wrap">
+                <h2 id="stack-title">Stack técnica</h2>
+                <dl class="stack-list">
+                    <div class="stack-row">
+                        <dt>Linguagens</dt>
+                        <dd><ul class="stack-tags" role="list"><li>C++</li><li>Python</li><li>Dart</li><li>Java (básico)</li></ul></dd>
+                    </div>
+                    <div class="stack-row">
+                        <dt>Web</dt>
+                        <dd><ul class="stack-tags" role="list"><li>HTML</li><li>CSS</li><li>JavaScript (básico)</li></ul></dd>
+                    </div>
+                    <div class="stack-row">
+                        <dt>Ferramentas e automação</dt>
+                        <dd><ul class="stack-tags" role="list"><li>Git</li><li>GitHub</li><li>Power Automate</li><li>Power Apps</li><li>SharePoint</li></ul></dd>
+                    </div>
+                </dl>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="section contact" id="contato" aria-labelledby="contact-title">
+            <div class="wrap">
+                <h2 id="contact-title">Contato</h2>
+                <div class="contact-cards">
+                    <div class="contact-card contact-email">
+                        <span class="contact-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="m4 7 8 6 8-6"/></svg></span>
+                        <div class="contact-details">
+                            <span class="contact-label">E-mail</span>
+                            <a class="contact-value" id="contact-email-link" href="mailto:eliseu.marinho1982@gmail.com">eliseu.marinho1982@gmail.com</a>
+                        </div>
+                        <button class="button contact-copy" type="button" aria-label="Copiar e-mail" hidden>Copiar</button>
+                    </div>
+                    <a class="contact-card contact-social" href="https://www.linkedin.com/in/eliseu-marinho/">
+                        <span class="contact-icon"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="6" cy="6" r="1.6"/><path d="M4.5 9h3v10h-3zm5.5 0h2.9v1.4A3.7 3.7 0 0 1 16 8.8c2.6 0 3.5 1.7 3.5 4V19h-3v-5.5c0-1.3-.3-2.2-1.6-2.2-1.4 0-1.9 1-1.9 2.2V19h-3z"/></svg></span>
+                        <span class="contact-details">
+                            <span class="contact-label">LinkedIn</span>
+                            <span class="contact-value">Eliseu Marinho</span>
+                        </span>
+                    </a>
+                </div>
+                <p class="contact-copy-status" role="status" aria-atomic="true"></p>
+                <div class="actions contact-actions">
+                    <a class="button primary" href="Meu%20Curr%C3%ADculo.pdf" download="Eliseu-Marinho-Curriculo.pdf">Baixar currículo (PDF)</a>
+                    <a class="contact-github" href="https://github.com/elyzel">GitHub</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="wrap">
+            <p>&copy; 2026 Eliseu Marinho. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="assets/js/scroll-animations.js"></script>
+</body>
+</html>

@@ -1,0 +1,68 @@
+# Portfolio - Gitignore
+
+# Arquivos do Sistema Operacional
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# Editores de Código
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.project
+.settings/
+*.sublime-project
+*.sublime-workspace
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Arquivos Temporários
+*.tmp
+*.temp
+.cache/
+temp/
+
+# Backups
+*.bak
+*.backup
+*-backup.*
+
+# Node (se adicionar build tools futuramente)
+node_modules/
+package-lock.json
+yarn.lock
+
+# Arquivos de Build (se adicionar)
+dist/
+build/
+*.min.js
+*.min.css
+
+# Arquivos Pessoais Sensíveis
+*.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Rascunhos e WIP
+drafts/
+wip/
+TODO.txt
+
+# Arquivos grandes de mídia (versionamento via Git LFS recomendado)
+*.mp4
+*.mov
+*.avi
+*.mkv

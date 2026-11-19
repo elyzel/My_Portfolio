@@ -1,0 +1,366 @@
+/**
+ * Components.css
+ * Componentes reutilizáveis: botões, cards, meta informações, etc.
+ */
+
+/* === BOTÕES === */
+
+.button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 2.75rem;
+    padding: .55rem 1.1rem;
+    border: 1px solid var(--line);
+    border-radius: 999px;  /* Bordas completamente arredondadas */
+    color: inherit;
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
+    background: var(--panel);
+    text-decoration: none;
+    transition: border-color 0.2s ease;
+}
+
+.button:hover {
+    border-color: var(--accent);
+}
+
+.button.primary {
+    background: var(--ink);
+    color: var(--bg);
+    border-color: var(--ink);
+}
+
+.actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .65rem;
+}
+
+/* === META INFORMAÇÕES === */
+
+.meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .4rem 1rem;
+    margin-bottom: .7rem;
+    color: var(--muted);
+    font-size: .9375rem;
+    font-weight: 600;
+}
+
+.award {
+    color: var(--accent);  /* Destaque para prêmios */
+}
+
+/* === INTRO TEXT === */
+
+.intro {
+    max-width: 36rem;
+    color: var(--muted);
+}
+
+/* === STAGE (Área de demonstração) === */
+
+.stage {
+    margin: 1rem 0 0;
+    background: var(--stage);
+    color: var(--stage-text);
+    border: 1px solid var(--stage-line);
+    border-radius: 1.15rem;
+    overflow: hidden;
+}
+
+.sticky-stage {
+    display: none;  /* Oculto por padrão, ativado via media query */
+}
+
+.stage svg {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.stage figcaption {
+    min-height: 3.25rem;
+    display: grid;
+    align-items: center;
+    padding: .65rem 1.1rem;
+    border-top: 1px solid var(--stage-line);
+    color: var(--stage-muted);
+    font-size: .9375rem;
+    font-weight: 600;
+}
+
+/* === SVG SPECIFIC STYLES === */
+
+#safevoice-scene text {
+    fill: var(--stage-text);
+    font: 600 17px 'Instrument Sans', system-ui, sans-serif;
+}
+
+#safevoice-scene .graphic-muted {
+    fill: var(--stage-muted);
+}
+
+#safevoice-scene .alert-glow {
+    opacity: var(--alert, 1);
+}
+
+#safevoice-scene .signal-line {
+    stroke-dasharray: 1;
+    stroke-dashoffset: var(--signal-offset, 1);
+}
+
+#safevoice-scene .location-pin {
+    opacity: var(--location, 0);
+}
+
+#safevoice-scene .notification {
+    opacity: var(--contacts, 0);
+}
+
+/* Estados do stage */
+.stage-location {
+    --signal-offset: 0;
+    --location: 1;
+}
+
+.stage-contacts {
+    --signal-offset: 0;
+    --location: 1;
+    --contacts: 1;
+}
+
+/* === TIMELINE === */
+
+.timeline {
+    position: relative;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+/* Linha vertical da timeline */
+.timeline::before {
+    content: '';
+    position: absolute;
+    inset: .55rem auto .75rem .36rem;
+    width: 1px;
+    background: var(--line);
+}
+
+.timeline-item {
+    position: relative;
+    padding-left: 1.9rem;
+}
+
+.timeline-item + .timeline-item {
+    margin-top: clamp(1.65rem, 4vw, 2.5rem);
+}
+
+/* Marcador circular da timeline */
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    top: .4rem;
+    left: 0;
+    width: .75rem;
+    height: .75rem;
+    border: 2px solid var(--accent);
+    border-radius: 50%;
+    background: var(--bg);
+}
+
+.timeline-item h3 {
+    font-size: clamp(1.35rem, 2.6vw, 2rem);
+}
+
+.timeline-item .meta {
+    margin-block: .4rem .55rem;
+}
+
+.timeline-item .intro {
+    max-width: 35rem;
+}
+
+/* Item atual na timeline */
+.timeline-current::before {
+    background: var(--accent);
+}
+
+.timeline-current .period {
+    color: var(--accent);
+}
+
+/* === CONTACT SECTION === */
+
+.contact .intro {
+    margin-block: 1rem 1.35rem;
+    overflow-wrap: anywhere;  /* Quebra URLs longas */
+}
+
+
+/* Stack Section */
+.stack-list {
+    margin: 1.5rem 0 0;
+}
+
+.stack-row {
+    display: grid;
+    grid-template-columns: minmax(10rem, .42fr) minmax(0, 1fr);
+    gap: 1.5rem;
+    padding: 1.5rem 0;
+    border-top: 1px solid var(--line);
+}
+
+.stack-row:last-child {
+    border-bottom: 1px solid var(--line);
+}
+
+.stack-row dt {
+    color: var(--accent);
+    font-weight: 600;
+}
+
+.stack-row dd {
+    margin: 0;
+}
+
+.stack-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .4rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.stack-tags li {
+    border: 1px solid var(--line);
+    border-radius: .45rem;
+    padding: .35rem .65rem;
+    font-size: .9375rem;
+    background: var(--panel);
+}
+
+/* Contact Cards */
+.contact .intro {
+    margin-block: 1rem 1.35rem;
+    overflow-wrap: anywhere;
+}
+
+.contact-cards {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: .75rem;
+    margin-top: 1.5rem;
+}
+
+.contact-card {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: .85rem;
+    padding: 1rem;
+    border: 1.5px solid var(--line);
+    border-radius: .65rem;
+    transition: border-color .2s;
+    background: var(--panel);
+}
+
+.contact-email {
+    grid-template-columns: auto minmax(0, 1fr) auto;
+}
+
+.contact-social {
+    text-decoration: none;
+}
+
+.contact-social:hover,
+.contact-email:focus-within {
+    border-color: var(--accent);
+}
+
+.contact-icon {
+    display: grid;
+    place-items: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    border-radius: .5rem;
+    color: var(--accent);
+    background: var(--bg);
+}
+
+.contact-icon svg {
+    width: 1.35rem;
+    height: 1.35rem;
+}
+
+.contact-label {
+    display: block;
+    color: var(--muted);
+    font-size: .9375rem;
+}
+
+.contact-value {
+    display: block;
+    width: fit-content;
+    max-width: 100%;
+    color: var(--ink);
+    font-weight: 600;
+    overflow-wrap: anywhere;
+}
+
+a.contact-value {
+    text-decoration-color: var(--line);
+    text-underline-offset: .16em;
+}
+
+a.contact-value:hover,
+.contact-social:hover .contact-value {
+    text-decoration: underline;
+    text-underline-offset: .16em;
+}
+
+.contact-copy {
+    min-width: 4.65rem;
+    padding-inline: .55rem;
+    font-size: .875rem;
+}
+
+.contact-copy[hidden] {
+    display: none;
+}
+
+.contact-copy-status:not([data-copy-error]) {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+}
+
+.contact-copy-status[data-copy-error] {
+    margin-top: .5rem;
+    color: var(--muted);
+}
+
+.contact-actions {
+    margin-top: 1rem;
+    align-items: center;
+}
+
+.contact-github {
+    padding: .55rem .65rem;
+    font-weight: 600;
+    text-underline-offset: .2em;
+}
+
+/* Responsive Stack & Contact */
+@media (max-width: 42rem) {
+    .stack-row,
+    .contact-cards {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}

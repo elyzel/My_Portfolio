@@ -1,0 +1,689 @@
+/**
+ * Projects.css
+ * Estilos específicos para as seções de projetos
+ * Inclui SafeVoice, Salom Finance e outros projetos
+ */
+
+/* === LAYOUT DE PROJETOS === */
+
+.project-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem 3rem;
+    align-items: end;
+    margin-bottom: 2rem;
+}
+
+.experience {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem 3rem;
+    align-items: start;
+}
+
+/* === STEPS (Passos do projeto) === */
+
+.steps {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 1.5rem;
+}
+
+.step {
+    padding-block: 1.25rem .5rem;
+    border-top: 1px solid var(--line);
+}
+
+.step p {
+    color: var(--muted);
+    margin-top: .6rem;
+    max-width: 34rem;
+}
+
+/* ============================================
+   SALOM FINANCE - ESTILOS ESPECÍFICOS
+   ============================================ */
+
+.sf-header {
+    align-items: start;
+    margin-bottom: 2.25rem;
+}
+
+.sf-intro .intro + .intro {
+    margin-top: .65rem;
+}
+
+.sf-intro .actions {
+    margin-top: 1rem;
+    align-items: center;
+}
+
+.sf-sample {
+    color: var(--muted);
+    font-size: .9375rem;
+}
+
+/* === SF Steps === */
+
+.sf-steps {
+    display: grid;
+    gap: 1.5rem;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.sf-step {
+    min-width: 0;
+    padding-top: 1.15rem;
+    border-top: 1px solid var(--line);
+}
+
+.sf-step > p {
+    max-width: 34rem;
+    margin-top: .65rem;
+    color: var(--muted);
+}
+
+/* === SF Stage e Cards === */
+
+.sf-stage,
+.sf-mini {
+    border: 1px solid var(--stage-line);
+    border-radius: 1.15rem;
+    background: var(--stage);
+    color: var(--stage-text);
+    font-variant-numeric: tabular-nums;  /* Números alinhados */
+}
+
+.sf-stage {
+    display: none;  /* Aparece apenas em desktop com scroll */
+}
+
+.sf-mini {
+    display: grid;
+    align-content: center;
+    gap: .7rem;
+    margin-top: 1rem;
+    padding: .85rem;
+    overflow: hidden;
+}
+
+.sf-card {
+    min-width: 0;
+    padding: .65rem .75rem;
+    border: 1px solid var(--stage-line);
+    border-radius: .65rem;
+}
+
+.sf-card p,
+.sf-card li {
+    font-size: .9375rem;
+}
+
+.sf-card p {
+    color: var(--stage-muted);
+}
+
+.sf-card .sf-kicker {
+    color: var(--stage-text);
+    font-weight: 600;
+}
+
+/* === SF Art Elements === */
+
+.sf-art {
+    position: relative;
+    display: grid;
+    place-items: center;
+    height: 7rem;
+}
+
+/* Papel/Documento */
+.sf-paper {
+    display: grid;
+    align-content: center;
+    gap: .35rem;
+    width: 4.8rem;
+    height: 5.75rem;
+    transform: translateY(calc((1 - var(--import, 1)) * -1.25rem)) 
+               rotate(calc(-9deg + var(--import, 1) * 7deg));
+    padding: .6rem;
+    color: var(--stage-text);
+    background: var(--stage);
+    border: 1px solid var(--stage-muted);
+    border-radius: .45rem .9rem .45rem .45rem;
+}
+
+.sf-paper b {
+    font: 700 .875rem/1.2 var(--display);
+}
+
+.sf-paper i {
+    width: 100%;
+    height: 1px;
+    background: var(--stage-muted);
+}
+
+.sf-paper i:last-child {
+    width: 68%;
+}
+
+/* Cadeado (Lock) */
+.sf-opening,
+.sf-unlock {
+    display: flex;
+    align-items: center;
+    gap: .75rem;
+}
+
+.sf-lock {
+    flex: 0 0 2rem;
+    color: var(--mint);
+}
+
+.sf-lock svg {
+    display: block;
+    width: 100%;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2.5;
+    stroke-linecap: round;
+}
+
+.sf-shackle {
+    transform: translateY(calc((1 - var(--locked, 1)) * -6px));
+}
+
+/* === SF Ledger (Registros) === */
+
+.sf-ledger,
+.sf-periods,
+.sf-series {
+    padding: 0;
+    margin: .45rem 0 0;
+    list-style: none;
+}
+
+.sf-ledger li {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) max-content;
+    gap: .35rem;
+    padding: .35rem 0;
+    border-top: 1px solid var(--stage-line);
+    transform: translateY(calc((1 - var(--import, 1)) * -.75rem));
+    opacity: var(--import, 1);
+}
+
+.sf-ledger li b {
+    color: var(--signal);
+}
+
+.sf-ledger mark {
+    background: none;
+    color: var(--mint);
+    text-decoration: underline;
+    text-underline-offset: .15em;
+}
+
+.sf-ledger small {
+    display: block;
+    color: var(--stage-muted);
+}
+
+.sf-stage .sf-ledger mark,
+.sf-stage .sf-ledger small {
+    opacity: var(--categories, 1);
+}
+
+/* === SF Cube (Meta de poupança) === */
+
+.sf-cube {
+    position: relative;
+    width: 5.6rem;
+    aspect-ratio: 1;
+    display: grid;
+    place-items: center;
+    border: 1px solid var(--mint);
+    border-radius: 1.15rem;
+    overflow: hidden;
+    transform: rotate(calc(-10deg + var(--scene-p, 1) * 16deg));
+}
+
+.sf-cube i {
+    position: absolute;
+    inset: auto 0 0;
+    height: calc(var(--goal, 1) * 100%);
+    background: var(--mint);
+    opacity: .5;
+}
+
+.sf-cube span {
+    position: relative;
+    font-size: 2.15rem;
+}
+
+/* Métrica de meta */
+.sf-metric {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .1rem .7rem;
+    align-items: baseline;
+    margin-top: .25rem;
+}
+
+.sf-metric strong {
+    color: var(--mint);
+    font: 700 clamp(1.5rem, 3vw, 2.2rem)/1.1 var(--display);
+}
+
+.sf-metric span {
+    color: var(--stage-muted);
+    font-size: .9375rem;
+}
+
+/* Barra de progresso */
+.sf-meter {
+    height: .25rem;
+    margin-block: .45rem;
+    border-radius: 1rem;
+    background: var(--stage-line);
+}
+
+.sf-meter i {
+    display: block;
+    width: calc(var(--goal, 1) * 100%);
+    height: 100%;
+    border-radius: inherit;
+    background: var(--mint);
+}
+
+/* Meta completa - cor dourada */
+.sf-mini .sf-goal-number,
+.sf-mini .sf-goal-state,
+.sf-scene.sf-goal-complete .sf-goal-number,
+.sf-scene.sf-goal-complete .sf-goal-state {
+    color: var(--gold);
+}
+
+.sf-scene.sf-goal-complete .sf-cube {
+    border-color: var(--gold);
+    box-shadow: 0 0 1.2rem color-mix(in srgb, var(--gold) 28%, transparent);
+}
+
+.sf-stage .sf-contribution {
+    opacity: var(--contribution, 1);
+}
+
+/* Confetti (celebração) */
+.sf-confetti {
+    display: none;
+}
+
+.sf-stage .sf-confetti {
+    display: block;
+    position: absolute;
+    inset: 32% 50% auto;
+    pointer-events: none;
+    opacity: var(--celebrate, 0);
+}
+
+.sf-confetti i {
+    position: absolute;
+    width: 3px;
+    height: 7px;
+    border-radius: 1px;
+    background: var(--gold);
+    transform: translate(calc(var(--x) * var(--burst, 0)), calc(var(--y) * var(--burst, 0))) 
+               rotate(var(--angle));
+}
+
+/* === SF Donut Chart === */
+
+.sf-donut {
+    width: 6.1rem;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: conic-gradient(
+        var(--mint) 0 67.5%,
+        var(--signal) 67.5% 84.375%,
+        var(--stage-muted) 84.375% 100%
+    );
+    mask: radial-gradient(farthest-side, transparent 57%, black 59%);
+    transform: scale(var(--ring, 1));
+}
+
+.sf-budget {
+    margin: .2rem 0 0;
+    font-size: .9375rem;
+}
+
+.sf-budget div {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0 .6rem;
+    justify-content: space-between;
+}
+
+.sf-budget dt {
+    color: var(--stage-muted);
+}
+
+.sf-budget dd {
+    margin: 0;
+}
+
+/* === SF Dashboard e Gráficos === */
+
+.sf-dashboard {
+    display: grid;
+    gap: .6rem;
+    width: 100%;
+}
+
+.sf-dashboard-art,
+.sf-graph-art {
+    position: relative;
+    width: min(100%, 25rem);
+    margin-inline: auto;
+}
+
+.sf-plot {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+/* SVG dos gráficos */
+.sf-grid {
+    fill: none;
+    stroke: var(--stage-line);
+}
+
+.sf-line,
+.sf-target {
+    fill: none;
+    stroke: var(--mint);
+    stroke-width: 2.5;
+}
+
+.sf-line {
+    stroke-linecap: round;
+    stroke-dasharray: 1;
+    stroke-dashoffset: calc(1 - var(--draw, 1));
+}
+
+.sf-line-wealth {
+    opacity: .56;
+}
+
+.sf-target {
+    stroke-dasharray: 4 5;
+    stroke-width: 1;
+    opacity: .7;
+}
+
+.sf-line-stock,
+.sf-target-stock {
+    stroke: var(--stage-text);
+}
+
+.sf-points {
+    fill: var(--mint);
+}
+
+.sf-points-stock {
+    fill: var(--stage-text);
+}
+
+.sf-points circle {
+    opacity: var(--point-first, 1);
+}
+
+.sf-points circle:nth-child(2) {
+    opacity: var(--point-middle, 1);
+}
+
+.sf-points circle:nth-child(3) {
+    opacity: var(--point-last, 1);
+}
+
+/* Barras do gráfico */
+.sf-bars {
+    position: absolute;
+    inset: 10% 10% 22%;
+    display: flex;
+    gap: .5rem;
+    align-items: end;
+}
+
+.sf-bars i {
+    flex: 1;
+    height: var(--bar);
+    background: var(--mint);
+    opacity: .32;
+    border-radius: .25rem .25rem 0 0;
+}
+
+.sf-bars i:nth-child(even) {
+    background: var(--signal);
+}
+
+/* Períodos e séries */
+.sf-periods {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .3rem;
+    margin-bottom: .45rem;
+}
+
+.sf-periods li {
+    border: 1px solid var(--stage-line);
+    border-radius: 1rem;
+    padding: .12rem .45rem;
+    color: var(--stage-muted);
+}
+
+.sf-periods li[aria-current] {
+    border-color: var(--mint);
+    color: var(--mint);
+}
+
+.sf-months {
+    display: flex;
+    justify-content: space-between;
+    margin-inline: 5%;
+    color: var(--stage-muted);
+    font-size: .875rem;
+}
+
+.sf-series {
+    color: var(--stage-muted);
+}
+
+.sf-series li::before {
+    content: '';
+    display: inline-block;
+    width: .45rem;
+    height: .45rem;
+    border-radius: 50%;
+    margin-right: .35rem;
+    background: var(--mint);
+}
+
+.sf-series li + li::before {
+    background: var(--stage-text);
+}
+
+/* === SF Notepad (Bloco de notas criptografado) === */
+
+.sf-notepad {
+    overflow: hidden;
+    border: 1px solid var(--stage-line);
+    border-radius: .65rem;
+}
+
+.sf-notepad > div {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: .1rem .5rem;
+    padding: .4rem .65rem;
+    border-bottom: 1px solid var(--stage-line);
+    font-size: .875rem;
+}
+
+.sf-notepad span,
+.sf-cipher,
+.sf-restored {
+    color: var(--stage-muted);
+}
+
+.sf-cipher {
+    margin: 0;
+    padding: .6rem .65rem;
+    font: .875rem/1.55 ui-monospace, monospace;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+    opacity: var(--cipher-opacity, 1);
+}
+
+.sf-stage .sf-unlock {
+    transform: translateY(calc((1 - var(--locked, 1)) * .7rem));
+}
+
+.sf-file-icon {
+    flex: 0 0 1.5rem;
+    margin-left: auto;
+    color: var(--mint);
+    opacity: var(--restored, 1);
+    transform: translateY(calc((1 - var(--restored, 1)) * -3rem));
+}
+
+.sf-file-icon svg {
+    display: block;
+    width: 100%;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.5;
+}
+
+.sf-closing {
+    color: var(--stage-muted);
+    font-size: .9375rem;
+}
+
+.sf-restored {
+    display: block;
+    margin-top: .2rem;
+    font-size: .875rem;
+    opacity: var(--restored, 1);
+}
+
+/* === SF Desktop Layout com Scroll === */
+
+@media (min-width: 53rem) and (min-height: 38rem) {
+    .sf-ready .sf-story {
+        display: grid;
+        grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr);
+        gap: clamp(2rem, 5vw, 5rem);
+    }
+
+    .sf-ready .sf-steps {
+        gap: 0;
+        padding-bottom: 13svh;
+    }
+
+    .sf-ready .sf-step {
+        display: grid;
+        align-content: center;
+        min-height: clamp(19rem, 58svh, 37rem);
+    }
+
+    .sf-ready .sf-step[aria-current] {
+        border-top-color: var(--accent);
+    }
+
+    .sf-ready .sf-step[aria-current] h3 {
+        color: var(--accent);
+    }
+
+    .sf-ready .sf-mini {
+        display: none;
+    }
+
+    .sf-ready .sf-stage {
+        display: block;
+        grid-column: 2;
+        grid-row: 1;
+        align-self: start;
+        position: sticky;
+        top: max(calc(var(--header) + var(--safe-top) + .8rem), calc(50svh - 14rem));
+        margin: 0;
+        overflow: hidden;
+    }
+
+    .sf-viewport {
+        position: relative;
+        height: clamp(22rem, 65svh, 32rem);
+        isolation: isolate;
+    }
+
+    .sf-scene {
+        position: absolute;
+        inset: 0;
+        z-index: var(--scene-z, 0);
+        display: grid;
+        align-content: center;
+        gap: .7rem;
+        opacity: var(--scene-opacity, 0);
+        transform: translateY(calc((1 - var(--scene-opacity, 0)) * .65rem));
+        pointer-events: none;
+        padding: clamp(.85rem, 2vw, 1.5rem);
+    }
+
+    .sf-scene-0 {
+        --scene-opacity: 1;
+    }
+
+    .sf-scene .sf-art {
+        height: clamp(7rem, 24svh, 12rem);
+    }
+
+    .sf-scene .sf-paper {
+        scale: 1.3;
+    }
+
+    .sf-scene .sf-cube,
+    .sf-scene .sf-donut {
+        scale: 1.36;
+    }
+
+    .sf-has-webgl .sf-scene .sf-object {
+        visibility: hidden;
+    }
+
+    .sf-canvas {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+    }
+
+    .sf-caption {
+        display: flex;
+        justify-content: space-between;
+        gap: .5rem;
+        padding: .6rem .85rem;
+        border-top: 1px solid var(--stage-line);
+        color: var(--stage-muted);
+        font-size: .9375rem;
+    }
+
+    .sf-count {
+        white-space: nowrap;
+    }
+}

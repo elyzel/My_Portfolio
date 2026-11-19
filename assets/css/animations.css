@@ -1,0 +1,113 @@
+/**
+ * Animations.css
+ * Todas as animações e transições do site
+ * Respeita preferência de movimento reduzido (prefers-reduced-motion)
+ */
+
+/* === ANIMAÇÕES GERAIS === */
+
+@media (prefers-reduced-motion: no-preference) {
+    /* Scroll suave */
+    html {
+        scroll-behavior: smooth;
+    }
+
+    /* Animação de entrada do título do hero */
+    .hero h1 span {
+        animation: title-in .6s ease-out both;
+    }
+
+    .hero h1 span:nth-child(2) {
+        animation-delay: .09s;
+    }
+
+    .hero h1 span:nth-child(3) {
+        animation-delay: .18s;
+    }
+
+    @keyframes title-in {
+        from {
+            opacity: 0;
+            transform: translateY(.28em);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* Animação de entrada dos cards do Salom Finance */
+    .sf-mini.sf-in-view > :not(.sf-confetti) {
+        animation: sf-card-in .43s ease-out both;
+    }
+
+    @keyframes sf-card-in {
+        from {
+            opacity: .58;
+            transform: translateY(.4rem);
+        }
+    }
+}
+
+/* === SCROLL-BASED ANIMATIONS (Desktop) === */
+
+@media (min-width: 53rem) and (min-height: 38rem) and (prefers-reduced-motion: no-preference) {
+    /* Layout de scroll para projetos */
+    .scroll-ready .story {
+        display: grid;
+        grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr);
+        gap: clamp(2rem, 5vw, 5rem);
+    }
+
+    .scroll-ready .steps {
+        gap: 0;
+    }
+
+    .scroll-ready .step {
+        display: grid;
+        align-content: center;
+        min-height: clamp(17rem, 43svh, 26rem);
+    }
+
+    /* Destaque do step atual */
+    .scroll-ready .step[aria-current="step"] {
+        border-top-color: var(--accent);
+    }
+
+    .scroll-ready .step[aria-current="step"] h3 {
+        color: var(--accent);
+    }
+
+    /* Esconde mini stages em desktop */
+    .scroll-ready .step-stage {
+        display: none;
+    }
+
+    /* Stage fixo durante o scroll */
+    .scroll-ready .sticky-stage {
+        display: block;
+        grid-column: 2;
+        grid-row: 1;
+        position: sticky;
+        top: max(calc(var(--header) + var(--safe-top) + 1rem), calc(50svh - 8rem));
+        align-self: start;
+        margin: 0;
+    }
+
+    .sticky-stage svg {
+        max-height: calc(50svh + 3rem);
+    }
+}
+
+/* === TRANSIÇÕES SUAVES === */
+
+.button {
+    transition: all 0.2s ease;
+}
+
+/* Transições para elementos interativos */
+a,
+nav a,
+.button {
+    transition: color 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+}

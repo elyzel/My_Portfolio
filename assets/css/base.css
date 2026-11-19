@@ -1,0 +1,56 @@
+/**
+ * Base.css
+ * Estilos fundamentais e reset básico
+ * Define comportamento padrão de elementos HTML
+ */
+
+/* === RESET E CONFIGURAÇÕES BÁSICAS === */
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    /* Scroll com offset para não esconder conteúdo atrás do header fixo */
+    scroll-padding-top: calc(var(--header) + var(--safe-top) + 1rem);
+}
+
+body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font: 400 1.0625rem/1.6 'Instrument Sans', system-ui, sans-serif;
+}
+
+/* === TIPOGRAFIA === */
+
+h1, h2, h3 {
+    margin: 0;
+    font-family: var(--display);
+    line-height: 1.05;
+    letter-spacing: -.045em;  /* Kerning apertado para display fonts */
+}
+
+h2 {
+    font-size: clamp(2.5rem, 6vw, 5rem);  /* Responsivo: min 2.5rem, ideal 6vw, max 5rem */
+}
+
+h3 {
+    font-size: clamp(1.6rem, 3vw, 2.5rem);
+}
+
+p {
+    margin: 0;
+}
+
+/* === LINKS E INTERAÇÃO === */
+
+a {
+    color: inherit;
+}
+
+/* Indicador de foco para acessibilidade */
+:focus-visible {
+    outline: 3px solid var(--accent);
+    outline-offset: 4px;
+}
