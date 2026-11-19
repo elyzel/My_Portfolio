@@ -4,23 +4,6 @@
  * Inclui SafeVoice, Salom Finance e outros projetos
  */
 
-/* === LAYOUT DE PROJETOS === */
-
-.project-header {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1.5rem 3rem;
-    align-items: end;
-    margin-bottom: 2rem;
-}
-
-.experience {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1.5rem 3rem;
-    align-items: start;
-}
-
 /* === STEPS (Passos do projeto) === */
 
 .steps {
@@ -45,25 +28,6 @@
 /* ============================================
    SALOM FINANCE - ESTILOS ESPECÍFICOS
    ============================================ */
-
-.sf-header {
-    align-items: start;
-    margin-bottom: 2.25rem;
-}
-
-.sf-intro .intro + .intro {
-    margin-top: .65rem;
-}
-
-.sf-intro .actions {
-    margin-top: 1rem;
-    align-items: center;
-}
-
-.sf-sample {
-    color: var(--muted);
-    font-size: .9375rem;
-}
 
 /* === SF Steps === */
 
@@ -602,6 +566,10 @@
         min-height: clamp(19rem, 58svh, 37rem);
     }
 
+    .sf-ready .sf-step:first-child {
+        min-height: clamp(7rem, 15svh, 10rem);
+    }
+
     .sf-ready .sf-step[aria-current] {
         border-top-color: var(--accent);
     }
@@ -620,7 +588,7 @@
         grid-row: 1;
         align-self: start;
         position: sticky;
-        top: max(calc(var(--header) + var(--safe-top) + .8rem), calc(50svh - 14rem));
+        top: max(calc(var(--header-height, calc(var(--header) + var(--safe-top))) + .8rem), calc(50svh - 14rem));
         margin: 0;
         overflow: hidden;
     }
@@ -685,5 +653,409 @@
 
     .sf-count {
         white-space: nowrap;
+    }
+}
+
+/* Vitrine e detalhe dos projetos */
+
+.project-showcase {
+    position: relative;
+    overflow-anchor: none;
+    scroll-margin-top: .5rem;
+}
+
+.project-fragments,
+.project-fragments span {
+    position: absolute;
+    inset-block-start: 0;
+    scroll-margin-top: .5rem;
+}
+
+.project-heading {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+    align-items: center;
+    gap: .5rem;
+}
+
+.project-heading h2 {
+    grid-column: 2;
+    grid-row: 1;
+    text-align: center;
+}
+
+.project-heading .button {
+    grid-row: 1;
+    gap: .4rem;
+}
+
+.project-previous {
+    grid-column: 1;
+    justify-self: start;
+}
+
+.project-next {
+    grid-column: 3;
+    justify-self: end;
+}
+
+.project-pagination {
+    display: grid;
+    justify-items: center;
+    gap: .15rem;
+    margin-top: .75rem;
+    text-align: center;
+}
+
+.project-indicator {
+    color: var(--muted);
+    font-size: .9375rem;
+}
+
+.project-dots {
+    display: flex;
+}
+
+.project-dots button {
+    display: grid;
+    width: 2.75rem;
+    height: 2.75rem;
+    place-items: center;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background: transparent;
+    color: var(--muted);
+    cursor: pointer;
+}
+
+.project-dots button::before {
+    width: .6rem;
+    height: .6rem;
+    border: 1px solid currentColor;
+    border-radius: 50%;
+    content: "";
+}
+
+.project-dots button[aria-current="true"] {
+    color: var(--accent);
+}
+
+.project-dots button[aria-current="true"]::before {
+    background: currentColor;
+}
+
+
+.project-layout {
+    margin-top: clamp(1.5rem, 4vw, 2.5rem);
+}
+
+.project-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 19rem), 1fr));
+    align-content: start;
+    gap: 1rem;
+}
+
+.project-item,
+.project-detail-slot {
+    min-width: 0;
+}
+
+.project-showcase [hidden] {
+    display: none;
+}
+
+.project-card {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: .85rem;
+    padding: clamp(1.5rem, 3vw, 2rem);
+    border: 1px solid var(--line);
+    border-radius: 1.75rem;
+    background: linear-gradient(145deg, #1b4038, var(--stage) 74%);
+    color: var(--stage-text);
+    font: inherit;
+    text-align: start;
+    cursor: pointer;
+    transform-origin: top left;
+    scroll-margin-top: .75rem;
+}
+
+.project-card > * {
+    pointer-events: none;
+}
+
+.project-card:focus-visible {
+    outline-color: var(--accent);
+}
+
+.project-logo {
+    display: grid;
+    width: 3.25rem;
+    height: 3.25rem;
+    flex: 0 0 auto;
+    place-items: center;
+    border: 1px solid var(--stage-line);
+    border-radius: 50%;
+    background: var(--stage);
+    color: var(--mint);
+    font: 800 1.15rem/1 var(--display);
+}
+
+.project-logo svg {
+    width: 54%;
+    height: 54%;
+}
+
+.project-card-title {
+    font: 750 clamp(1.8rem, 4vw, 3.2rem)/1.03 var(--display);
+    letter-spacing: -.045em;
+}
+
+.project-summary {
+    color: var(--stage-muted);
+}
+
+.project-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .4rem;
+}
+
+.project-chips span,
+.project-badge {
+    padding: .2rem .65rem;
+    border: 1px solid var(--stage-line);
+    border-radius: 99rem;
+    color: var(--stage-text);
+    font-size: .875rem;
+}
+
+.project-badge {
+    border-color: currentColor;
+    color: var(--mint);
+}
+
+.project-explore {
+    display: inline-flex;
+    align-items: center;
+    gap: .8rem;
+    margin-top: auto;
+    padding: .52rem 1rem;
+    border-radius: 99rem;
+    background: var(--stage-text);
+    color: var(--stage);
+    font-size: .9375rem;
+    font-weight: 700;
+}
+
+.project-detail-slot {
+    width: min(100%, 62rem);
+    margin-inline: auto;
+    overflow-x: clip;
+}
+
+.project-detail {
+    min-width: 0;
+    padding: clamp(1.35rem, 4vw, 2.75rem);
+    border: 1px solid var(--line);
+    border-radius: 1.75rem;
+    background: var(--panel);
+    scroll-margin-top: .5rem;
+    touch-action: pan-y pinch-zoom;
+}
+
+.project-detail-head {
+    position: relative;
+    min-height: 2.75rem;
+    margin-bottom: 1.5rem;
+    padding-inline: 2.75rem;
+    text-align: center;
+}
+
+.project-detail-head h3 {
+    font-size: clamp(1.8rem, 4.5vw, 3.8rem);
+}
+
+.project-meta,
+.project-data,
+.project-private {
+    color: var(--muted);
+    font-size: .9375rem;
+}
+
+.project-meta {
+    margin-top: .45rem;
+}
+
+.project-close.button {
+    position: absolute;
+    inset: 0 0 auto auto;
+    display: grid;
+    width: 2.75rem;
+    height: 2.75rem;
+    padding: 0;
+    place-items: center;
+    border-radius: 50%;
+    background: transparent;
+    color: var(--ink);
+    font: 500 1.5rem/1 var(--display);
+}
+
+.project-body {
+    display: grid;
+    gap: clamp(1.5rem, 4vw, 3rem);
+}
+
+.project-info,
+.project-facts {
+    display: grid;
+    align-content: start;
+    gap: 1rem;
+    min-width: 0;
+}
+
+.project-body h4 {
+    margin: 0 0 .4rem;
+    font: 750 1.18rem/1.2 var(--display);
+}
+
+.project-facts dl {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: .25rem .75rem;
+    margin: 0;
+}
+
+.project-facts dt {
+    font-weight: 600;
+}
+
+.project-facts dd {
+    margin: 0;
+    color: var(--muted);
+}
+
+@media (width > 42rem) {
+    .project-body:has(.project-facts:not([hidden])) {
+        grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+    }
+}
+
+.project-info p,
+.project-info ul {
+    max-width: 65ch;
+}
+
+.project-info .intro {
+    font-size: 1.08rem;
+}
+
+.project-info ul:not(.stack-tags) {
+    margin: 0;
+    padding-inline-start: 1.25rem;
+}
+
+.project-security {
+    margin-top: .6rem;
+    padding: .65rem .9rem;
+    border-inline-start: 3px solid var(--accent);
+}
+
+.project-security strong {
+    display: block;
+}
+
+.project-actions {
+    display: grid;
+    justify-items: center;
+    gap: .65rem;
+    margin-top: 1.75rem;
+    text-align: center;
+}
+
+.project-animation-slot {
+    display: grid;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.project-animation-slot h4 {
+    margin: 0;
+    font: 750 clamp(1.5rem, 4vw, 2.5rem)/1.1 var(--display);
+    letter-spacing: -.035em;
+    text-align: center;
+}
+
+.project-animation-stage :is(.step, .sf-step):first-child {
+    border-top: 0;
+}
+
+.project-announcement {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+}
+
+@media (max-width: 42rem) {
+    .project-cards {
+        grid-template-columns: 1fr;
+    }
+
+    .project-card {
+        height: auto;
+    }
+
+    .project-heading .button {
+        min-width: 2.75rem;
+        padding-inline: .6rem;
+        font-size: 1.35rem;
+    }
+
+    .project-nav-label {
+        display: none;
+    }
+}
+@media (min-width: 32rem) {
+    .project-actions:has(.project-demo:not([hidden])) {
+        grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+        align-items: center;
+    }
+
+    .project-actions > :is(.project-github, .project-private) {
+        grid-column: 2;
+    }
+
+    .project-actions > .project-demo {
+        justify-self: start;
+    }
+}
+
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+    .project-card {
+        transition: translate .2s ease;
+    }
+
+    .project-card:hover {
+        background: radial-gradient(18rem circle at var(--mx, 50%) var(--my, 25%), #284e43, transparent 75%),
+            linear-gradient(145deg, #1b4038, var(--stage) 74%);
+    }
+
+    .project-card:hover {
+        translate: 0 -.2rem;
+    }
+
+    .project-logo {
+        transition: translate .2s ease;
+    }
+
+    .project-card:hover .project-logo {
+        translate: 0 -.15rem;
     }
 }

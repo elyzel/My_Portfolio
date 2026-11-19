@@ -17,16 +17,15 @@ Este é um portfólio profissional desenvolvido seguindo as **melhores práticas
 - ✅ **Acessibilidade**: WCAG 2.1 Level AA
 - ✅ **Performance**: Carregamento rápido e otimizado
 - ✅ **Tema Claro/Escuro**: Suporte automático
-- ✅ **Zero Dependências**: Vanilla JS - sem frameworks
+- ✅ **Vanilla JS** — Three.js é carregado sob demanda para o palco do Salom
 
 ### 📋 Seções do Portfólio
 
-1. **Hero** - Apresentação com nome, descrição e botões de ação
-2. **SafeVoice** - App de segurança pessoal (animações 2D CSS/SVG)
-3. **Salom Finance** - App financeiro (animações 3D Three.js)
-4. **Experiência** - Timeline profissional
-5. **Stack Técnica** - Linguagens, web e ferramentas
-6. **Contato** - Cards de email/LinkedIn com botão copiar
+1. **Sobre** (`#inicio`) — Apresentação e acesso rápido a Projetos e Contato.
+2. **Experiência** — Histórico profissional.
+3. **Stack** — Linguagens, web, ferramentas, automação e segurança.
+4. **Projetos** — Vitrine de cards do Salom Finance e do SafeVoice. Ao selecionar um card, o painel abre com navegação circular entre os projetos.
+5. **Contato** — Cards de E-mail, LinkedIn e GitHub, seguidos pelo download do currículo.
 
 ---
 
@@ -47,7 +46,9 @@ My Portfolio/
 │   │   └── animations.css    # Animações
 │   │
 │   └── js/                    # Scripts
-│       └── scroll-animations.js
+│       ├── site-navigation.js # Seção ativa e altura do cabeçalho
+│       ├── scroll-animations.js # Palcos e cópia de e-mail
+│       └── projects.js        # Dados, vitrine, painel e navegação
 │
 └── 📁 docs/                   # Documentação completa
     ├── README.md             # Doc principal
@@ -102,6 +103,8 @@ Siga o [**Quick Start Guide**](./docs/QUICK-START.md) para fazer suas primeiras 
 
 ### Projetos Destacados
 
+Use Anterior, Próximo, os indicadores ou as setas do teclado com foco na seção. No celular, deslize horizontalmente no painel. O × e Esc retornam à vitrine. Os links `#projetos/salom`, `#projetos/safevoice` e `#salom` abrem o projeto correspondente. O botão Voltar do navegador restaura a seleção. As demonstrações ficam em **Veja funcionando**, abaixo de cada painel.
+
 #### 🔐 SafeVoice
 - Aplicativo de segurança pessoal
 - 🏆 2º lugar na FETIN 2026
@@ -115,7 +118,7 @@ Siga o [**Quick Start Guide**](./docs/QUICK-START.md) para fazer suas primeiras 
 ### Características Técnicas
 
 - 🎨 **CSS Modular**: 6 arquivos especializados
-- ⚡ **Intersection Observer**: Animações performáticas
+- ⚡ **IntersectionObserver** — Destaca a seção ativa e detecta a entrada do palco na área visível
 - 📱 **Mobile First**: Design responsivo
 - ♿ **A11Y**: Navegação por teclado e leitores de tela
 - 🌓 **Auto Theme**: Tema claro/escuro automático
@@ -172,16 +175,24 @@ Edite `index.html`:
 </h1>
 ```
 
+Edite a lista em `assets/js/projects.js` para atualizar projetos. O mesmo template gera os cards e os detalhes.
+
 **📘 Guia completo**: [CUSTOMIZATION.md](./docs/CUSTOMIZATION.md)
 
 ---
 
 ## 📱 Responsividade
 
-O site se adapta perfeitamente a todos os tamanhos de tela:
+| Condição | Layout |
+|----------|--------|
+| Até 36rem | Marca acima do menu, com quebra de linha quando necessário |
+| Até 42rem | Painel e contato em uma coluna, setas de projeto compactas |
+| Acima de 42rem | Duas colunas no detalhe, LinkedIn e GitHub lado a lado |
+| A partir de 53rem de largura e 38rem de altura | Palcos sticky quando o movimento é permitido |
 
-| Dispositivo | Breakpoint | Layout |
-|-------------|------------|--------|
+O cabeçalho destaca a seção visível. A altura medida compensa a rolagem por âncoras.
+
+-------------|------------|--------|
 | 📱 Mobile pequeno | < 400px | 1 coluna, header empilhado |
 | 📱 Mobile | 400px - 672px | 1-2 colunas |
 | 📱 Tablet | 672px - 848px | 2 colunas |
@@ -234,9 +245,8 @@ O site se adapta perfeitamente a todos os tamanhos de tela:
 
 ## 📊 Estatísticas
 
-- **Linhas de código**: ~1.757
 - **Arquivos CSS**: 6
-- **Arquivos JS**: 1
+- **Arquivos JS**: 3
 - **Componentes**: 12+
 - **Seções**: 5
 - **Documentação**: ~6.500 palavras

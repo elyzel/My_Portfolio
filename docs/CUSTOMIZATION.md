@@ -35,25 +35,11 @@ Este guia ensina como personalizar o portfólio para criar sua própria versão 
 
 ### 2. Navegação
 
-```html
-<nav aria-label="Navegação principal">
-    <a href="#projetos">Projetos</a>
-    <a href="#experiencia">Experiência</a>
-    <a href="#contato">Contato</a>
-    <!-- Adicione mais links conforme necessário -->
-</nav>
-```
+Edite a ordem do menu no `<nav>` de `index.html`. Cada `href` deve apontar para um ID de seção. Sobre e a marca apontam para o hero (`#inicio`). `site-navigation.js` usa os links do menu para atualizar o destaque durante a rolagem.
 
 ### 3. Links de Contato
 
-```html
-<div class="actions">
-    <a class="button primary" href="#projetos">Ver projetos</a>
-    <a class="button" href="mailto:seu@email.com">Email</a>
-    <a class="button" href="https://github.com/seu-usuario">GitHub</a>
-    <a class="button" href="https://linkedin.com/in/seu-perfil">LinkedIn</a>
-</div>
-```
+Edite os três `.contact-card` de `#contato` no `index.html`. Para o e-mail, atualize o `mailto:` e o texto de `#contact-email-link`, que alimenta o botão Copiar. Atualize a URL e o valor visível de cada perfil social. Para trocar o currículo, aponte o `href` para o PDF e defina em `download` o nome que será salvo.
 
 ---
 
@@ -217,92 +203,24 @@ body {
 
 ## 📂 Adicionando Novos Projetos
 
-### Passo 1: Estrutura HTML
+Acrescente um objeto à lista `projects` em `assets/js/projects.js`. A seção suporta até cinco entradas. A ordem da lista determina a sequência das setas, do swipe e dos indicadores.
 
-**Arquivo**: `index.html`
-
-```html
-<section class="section" id="seu-projeto" aria-labelledby="seu-projeto-title">
-    <div class="wrap">
-        <!-- Header do projeto -->
-        <div class="project-header">
-            <div>
-                <!-- Meta informações -->
-                <p class="meta">
-                    <span class="award">🏆 Seu prêmio (opcional)</span>
-                    <span>Tech Stack • Tecnologias</span>
-                </p>
-                <!-- Título -->
-                <h2 id="seu-projeto-title">Nome do Projeto</h2>
-            </div>
-            <!-- Descrição -->
-            <p class="intro">
-                Descrição curta e impactante do seu projeto. 
-                Explique o problema que resolve e o valor que entrega.
-            </p>
-        </div>
-
-        <!-- Conteúdo detalhado -->
-        <div class="story">
-            <ol class="steps" role="list">
-                <!-- Passo 1 -->
-                <li class="step">
-                    <h3>Primeiro Passo</h3>
-                    <p>Descrição do que acontece neste passo.</p>
-                </li>
-                
-                <!-- Passo 2 -->
-                <li class="step">
-                    <h3>Segundo Passo</h3>
-                    <p>Descrição do segundo passo.</p>
-                </li>
-                
-                <!-- Adicione quantos passos precisar -->
-            </ol>
-        </div>
-
-        <!-- Call to action -->
-        <div class="actions">
-            <a class="button" href="https://github.com/seu-usuario/projeto">
-                Ver código
-            </a>
-            <a class="button primary" href="https://seu-projeto.com">
-                Ver demo
-            </a>
-        </div>
-    </div>
-</section>
-```
-
-### Passo 2: Estilos Customizados (Opcional)
-
-**Arquivo**: `assets/css/projects.css`
-
-```css
-/* Adicione estilos específicos se necessário */
-#seu-projeto {
-    /* Cor de fundo customizada */
-    background: linear-gradient(to bottom, var(--bg), var(--panel));
-}
-
-#seu-projeto .steps {
-    /* Layout customizado */
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+```js
+{
+  id: 'novo-projeto',
+  titulo: 'Novo projeto',
+  resumo: 'Uma linha para a vitrine.',
+  chips: ['Python'],
+  descricao: ['Descrição apresentada no painel.'],
+  stack: ['Python'],
+  funcionalidades: ['Funcionalidade do projeto.'],
+  github: null,
+  demo: null,
+  animacao: null
 }
 ```
 
-### Passo 3: Adicionar à Navegação
-
-**Arquivo**: `index.html`
-
-```html
-<nav aria-label="Navegação principal">
-    <a href="#projetos">Projetos</a>
-    <a href="#seu-projeto">Seu Projeto</a>  <!-- Novo link -->
-    <a href="#experiencia">Experiência</a>
-    <a href="#contato">Contato</a>
-</nav>
-```
+Use um `id` único para o link `#projetos/novo-projeto`. Campos como `logo`, `problema`, `meuPapel`, `decisoesTecnicas`, `status`, `ano`, `destaque` e `dados` aparecem quando preenchidos. Use `github: null` para mostrar “Repositório privado” e `animacao: null` para exibir só o painel. A página abre na vitrine. Cada card ou link direto abre o painel correspondente.
 
 ---
 
@@ -310,30 +228,11 @@ body {
 
 ### Desabilitando Animações
 
-**Arquivo**: `index.html`
-
-Remova ou comente a linha:
-```html
-<!-- <script src="assets/js/scroll-animations.js"></script> -->
-```
+Defina `animacao: null` no projeto para remover **Veja funcionando** daquela entrada. Emule `prefers-reduced-motion: reduce` no navegador para testar os palcos 2D estáticos.
 
 ### Ajustando Velocidade das Animações
 
-**Arquivo**: `assets/css/animations.css`
-
-```css
-/* Animação de entrada do título */
-.hero h1 span {
-    animation: title-in .6s ease-out both;
-    /* Ajuste .6s para mais rápido ou lento */
-}
-
-/* Transições de elementos */
-.button {
-    transition: all 0.2s ease;
-    /* Ajuste 0.2s para transições mais rápidas/lentas */
-}
-```
+A entrada do painel dura 300 ms em `projects.js`. As transições de `.button` ficam em `components.css`. Os tokens `--button-hover-bg` e `--button-hover-text` em `variables.css` definem as cores dos primários no hover e no foco dos dois temas.
 
 ### Criando Nova Animação
 
@@ -390,32 +289,11 @@ Remova ou comente a linha:
 
 ### Alterando Altura do Header
 
-**Arquivo**: `assets/css/variables.css`
-
-```css
-:root {
-    --header: 4rem;  /* Original: 64px */
-    /* Ajuste conforme necessário */
-    --header: 5rem;  /* Mais alto */
-    --header: 3rem;  /* Mais baixo */
-}
-```
+`--header` em `variables.css` define a altura mínima de referência. O cabeçalho pode crescer quando o menu quebra. `site-navigation.js` mede a altura real para posicionar âncoras e palcos sticky.
 
 ### Grid de Projetos
 
-**Arquivo**: `assets/css/layout.css`
-
-```css
-.project-header {
-    /* Original: 2 colunas iguais */
-    grid-template-columns: 1fr 1fr;
-    
-    /* Alternativas: */
-    grid-template-columns: 1fr 2fr;  /* Coluna direita maior */
-    grid-template-columns: 2fr 1fr;  /* Coluna esquerda maior */
-    grid-template-columns: 1fr;      /* Uma coluna (mobile) */
-}
-```
+Ajuste `.project-cards` em `projects.css` para alterar a grade da vitrine. `.project-detail-slot` controla a largura do painel e `.project-body` controla as colunas. Até 42rem, o conteúdo usa uma coluna.
 
 ### Espaçamento Entre Seções
 

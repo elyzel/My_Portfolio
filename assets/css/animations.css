@@ -69,6 +69,10 @@
         min-height: clamp(17rem, 43svh, 26rem);
     }
 
+    .scroll-ready .step:first-child {
+        min-height: clamp(7rem, 15svh, 10rem);
+    }
+
     /* Destaque do step atual */
     .scroll-ready .step[aria-current="step"] {
         border-top-color: var(--accent);
@@ -89,7 +93,7 @@
         grid-column: 2;
         grid-row: 1;
         position: sticky;
-        top: max(calc(var(--header) + var(--safe-top) + 1rem), calc(50svh - 8rem));
+        top: max(calc(var(--header-height, calc(var(--header) + var(--safe-top))) + 1rem), calc(50svh - 8rem));
         align-self: start;
         margin: 0;
     }
@@ -99,15 +103,9 @@
     }
 }
 
-/* === TRANSIÇÕES SUAVES === */
+/* Transições de links */
 
-.button {
-    transition: all 0.2s ease;
-}
-
-/* Transições para elementos interativos */
 a,
-nav a,
-.button {
-    transition: color 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+nav a {
+    transition: color .2s ease, border-color .2s ease, background-color .2s ease;
 }

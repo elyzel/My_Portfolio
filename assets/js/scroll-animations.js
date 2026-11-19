@@ -10,77 +10,130 @@
 
 const desktopStory = matchMedia('(min-width: 53rem) and (min-height: 38rem) and (prefers-reduced-motion: no-preference)');
 const motionAllowed = matchMedia('(prefers-reduced-motion: no-preference)');
-const stage = document.querySelector('.sticky-stage');
-const caption = stage.querySelector('figcaption');
-const steps = [...document.querySelectorAll('.step')];
-const titles = steps.map(step => step.querySelector('h3').textContent);
-let frame = null;
-let activeStep = -1;
-
 function progress(value, start, end) {
   return Math.min(1, Math.max(0, (value - start) / Math.max(1, end - start)));
 }
 
-function updateStory() {
-  frame = null;
-  const readingLine = innerHeight * .57;
-  const [alertCenter, locationCenter, contactsCenter] = steps.map(step => {
-    const rect = step.getBoundingClientRect();
-    return rect.top + rect.height / 2;
-  });
-  const locationStart = (alertCenter + locationCenter) / 2;
-  const contactsStart = (locationCenter + contactsCenter) / 2;
-  const alert = progress(readingLine, alertCenter - 180, alertCenter);
-  const location = progress(readingLine, locationStart, locationCenter);
-  const contacts = progress(readingLine, contactsStart, contactsCenter);
+function observeStoryLayout(section, invalidate) {
+  const observer = new ResizeObserver(invalidate);
+  observer.observe(section);
+  observer.observe(document.body);
+  return observer;
+}
 
-  stage.style.setProperty('--alert', .45 + .55 * alert);
-  stage.style.setProperty('--signal-offset', 1 - location);
-  stage.style.setProperty('--location', location);
-  stage.style.setProperty('--contacts', contacts);
+function mountSafeVoice(section) {
+  const listeners = new AbortController();
+  const options = { signal: listeners.signal };
+  const stage = section.querySelector('.sticky-stage');
+  const caption = stage.querySelector('figcaption');
+  const steps = [...section.querySelectorAll('.step')];
+  const titles = steps.map(step => step.querySelector('h3').textContent);
+  const centers = new Float64Array(steps.length);
+  let layoutChanged = true;
+  let frame = null;
+  let activeStep = -1;
 
-  const nextStep = readingLine >= contactsStart ? 2 : readingLine >= locationStart ? 1 : 0;
-  if (nextStep !== activeStep) {
-    steps[activeStep]?.removeAttribute('aria-current');
-    steps[nextStep].setAttribute('aria-current', 'step');
-    caption.textContent = titles[nextStep];
-    activeStep = nextStep;
+  function updateStory() {
+    frame = null;
+    const scroll = scrollY;
+    const readingLine = scroll + innerHeight * .57;
+    if (layoutChanged) {
+      for (let index = 0; index < steps.length; index++) {
+        const rect = steps[index].getBoundingClientRect();
+        centers[index] = scroll + rect.top + rect.height / 2;
+      }
+      layoutChanged = false;
+    }
+    const alertCenter = centers[0];
+    const locationCenter = centers[1];
+    const contactsCenter = centers[2];
+    const locationStart = (alertCenter + locationCenter) / 2;
+    const contactsStart = (locationCenter + contactsCenter) / 2;
+    const alert = progress(readingLine, alertCenter - 180, alertCenter);
+    const location = progress(readingLine, locationStart, locationCenter);
+    const contacts = progress(readingLine, contactsStart, contactsCenter);
+
+    stage.style.setProperty('--alert', .45 + .55 * alert);
+    stage.style.setProperty('--signal-offset', 1 - location);
+    stage.style.setProperty('--location', location);
+    stage.style.setProperty('--contacts', contacts);
+
+    const nextStep = readingLine >= contactsStart ? 2 : readingLine >= locationStart ? 1 : 0;
+    if (nextStep !== activeStep) {
+      steps[activeStep]?.removeAttribute('aria-current');
+      steps[nextStep].setAttribute('aria-current', 'step');
+      caption.textContent = titles[nextStep];
+      activeStep = nextStep;
+    }
   }
-}
 
-function scheduleStory() {
-  if (desktopStory.matches && frame === null) frame = requestAnimationFrame(updateStory);
-}
+  function scheduleStory() {
+    if (desktopStory.matches && !options.signal.aborted && frame === null) {
+      frame = requestAnimationFrame(updateStory);
+    }
+  }
 
-function syncStory() {
-  document.documentElement.classList.toggle('scroll-ready', desktopStory.matches);
-  if (desktopStory.matches) {
+  function invalidateLayout() {
+    layoutChanged = true;
     scheduleStory();
-    return;
   }
-  if (frame !== null) cancelAnimationFrame(frame);
-  frame = null;
-  steps[activeStep]?.removeAttribute('aria-current');
-  activeStep = -1;
+
+  function syncStory() {
+    section.classList.toggle('scroll-ready', desktopStory.matches);
+    if (desktopStory.matches) {
+      invalidateLayout();
+      return;
+    }
+    if (frame !== null) cancelAnimationFrame(frame);
+    frame = null;
+    steps[activeStep]?.removeAttribute('aria-current');
+    activeStep = -1;
+  }
+
+  syncStory();
+  desktopStory.addEventListener('change', syncStory, options);
+  addEventListener('scroll', scheduleStory, { ...options, passive: true });
+  addEventListener('resize', invalidateLayout, options);
+  addEventListener('pageshow', invalidateLayout, options);
+  document.fonts?.ready.then(invalidateLayout);
+  const layoutObserver = observeStoryLayout(section, invalidateLayout);
+
+  return () => {
+    listeners.abort();
+    layoutObserver.disconnect();
+    if (frame !== null) cancelAnimationFrame(frame);
+  };
 }
 
-syncStory();
-desktopStory.addEventListener('change', syncStory);
-addEventListener('scroll', scheduleStory, { passive: true });
-addEventListener('resize', scheduleStory);
-addEventListener('pageshow', scheduleStory);
-document.fonts?.ready.then(scheduleStory);
+// SALOM FINANCE
+let threeLibrary;
 
-// =============================================
-// SALOM FINANCE ANIMATIONS
-// =============================================
+function loadThree() {
+  if (window.THREE) return Promise.resolve(window.THREE);
+  if (!threeLibrary) {
+    threeLibrary = new Promise(resolve => {
+      const script = document.createElement('script');
+      script.src = 'https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js';
+      script.onload = () => resolve(window.THREE ?? null);
+      script.onerror = () => {
+        script.remove();
+        threeLibrary = null;
+        resolve(null);
+      };
+      document.head.append(script);
+    });
+  }
+  return threeLibrary;
+}
 
-(() => {
-  const section = document.querySelector('#salom');
-  const story = section.querySelector('.sf-story');
+function mountSalom(section) {
+  const listeners = new AbortController();
+  const options = { signal: listeners.signal };
   const stage = section.querySelector('.sf-stage');
   const viewport = stage.querySelector('.sf-viewport');
   const steps = [...section.querySelectorAll('.sf-step')];
+  const stepStarts = new Float64Array(steps.length);
+  const stepEnds = new Float64Array(steps.length);
   const miniStages = [...section.querySelectorAll('.sf-mini')];
   const scenes = [...viewport.querySelectorAll('.sf-scene')];
   const titles = steps.map(step => step.querySelector('h3').textContent);
@@ -127,7 +180,12 @@ document.fonts?.ready.then(scheduleStory);
   let pointerX = 0;
   let pointerY = 0;
   let model = null;
-  let library = null;
+  let resizeModel = true;
+  let layoutChanged = true;
+  let snapToScroll = true;
+  let pointerMoved = false;
+  let pointerClientX = 0;
+  let pointerClientY = 0;
   let triedModel = false;
 
   function cue(value, start, end) {
@@ -154,10 +212,20 @@ document.fonts?.ready.then(scheduleStory);
   }
 
   function readScroll() {
-    const readingLine = innerHeight * .57;
+    const scroll = scrollY;
+    const readingLine = scroll + innerHeight * .57;
+    if (layoutChanged) {
+      for (let index = 0; index < steps.length; index++) {
+        const rect = steps[index].getBoundingClientRect();
+        stepStarts[index] = scroll + rect.top;
+        stepEnds[index] = scroll + rect.bottom;
+      }
+      layoutChanged = false;
+    }
     for (let index = steps.length - 1; index >= 0; index--) {
-      const rect = steps[index].getBoundingClientRect();
-      if (readingLine >= rect.top) return index + progress(readingLine, rect.top, rect.bottom);
+      if (readingLine >= stepStarts[index]) {
+        return index + progress(readingLine, stepStarts[index], stepEnds[index]);
+      }
     }
     return 0;
   }
@@ -254,6 +322,20 @@ document.fonts?.ready.then(scheduleStory);
       target = readScroll();
       sampleScroll = false;
     }
+    if (pointerMoved) {
+      const rect = stage.getBoundingClientRect();
+      mouseX = (pointerClientX - rect.left) / rect.width * 2 - 1;
+      mouseY = (pointerClientY - rect.top) / rect.height * 2 - 1;
+      pointerMoved = false;
+    }
+    if (resizeModel && model) {
+      model.resize();
+      resizeModel = false;
+    }
+    if (snapToScroll) {
+      current = target;
+      snapToScroll = false;
+    }
     current += (target - current) * .12;
     pointerX += (mouseX - pointerX) * .12;
     pointerY += (mouseY - pointerY) * .12;
@@ -274,7 +356,7 @@ document.fonts?.ready.then(scheduleStory);
   }
 
   function queueFrame() {
-    if (inView && desktopStory.matches && frame === null) frame = requestAnimationFrame(drawFrame);
+    if (inView && desktopStory.matches && !options.signal.aborted && frame === null) frame = requestAnimationFrame(drawFrame);
   }
 
   function resample() {
@@ -282,30 +364,17 @@ document.fonts?.ready.then(scheduleStory);
     queueFrame();
   }
 
-  function loadThree() {
-    if (window.THREE) return Promise.resolve(window.THREE);
-    if (!library) {
-      library = new Promise(resolve => {
-        const script = document.createElement('script');
-        script.src = 'https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js';
-        script.onload = () => resolve(window.THREE ?? null);
-        script.onerror = () => resolve(null);
-        document.head.append(script);
-      });
-    }
-    return library;
-  }
-
   async function enableModel() {
     if (triedModel || !inView || !desktopStory.matches) return;
     triedModel = true;
     const three = await loadThree();
-    if (!desktopStory.matches || !three || model) return;
+    if (options.signal.aborted || !desktopStory.matches || !three || model) return;
     if (!inView) {
       triedModel = false;
       return;
     }
     model = createModel(three);
+    resizeModel = true;
     if (model) section.classList.add('sf-has-webgl');
     queueFrame();
   }
@@ -323,11 +392,13 @@ document.fonts?.ready.then(scheduleStory);
     canvas.setAttribute('aria-hidden', 'true');
     const attributes = { alpha: true, antialias: true, powerPreference: 'low-power' };
     let renderer;
+    let context;
     try {
-      const context = canvas.getContext('webgl2', attributes) || canvas.getContext('webgl', attributes);
+      context = canvas.getContext('webgl2', attributes) || canvas.getContext('webgl', attributes);
       if (!context) return null;
       renderer = new THREE.WebGLRenderer({ ...attributes, canvas, context });
     } catch {
+      context?.getExtension('WEBGL_lose_context')?.loseContext();
       return null;
     }
 
@@ -375,6 +446,7 @@ document.fonts?.ready.then(scheduleStory);
     const iconContext = iconCanvas.getContext('2d');
     if (!iconContext) {
       renderer.dispose();
+      renderer.forceContextLoss();
       return null;
     }
     iconContext.font = '76px "Segoe UI Emoji", "Apple Color Emoji", sans-serif';
@@ -492,7 +564,6 @@ document.fonts?.ready.then(scheduleStory);
         return;
       }
       canvas.hidden = false;
-      resize();
       const fold = smooth(cue(phase, 1.76, 2.36));
       const collapse = smooth(cue(phase, 2.76, 3.27));
       const solid = 1 - smooth(cue(collapse, .26, .85));
@@ -539,6 +610,7 @@ document.fonts?.ready.then(scheduleStory);
       for (const material of [surface, edges, liquidMaterial, iconMaterial, pageMaterial, particleMaterial, ...ringMaterials]) material.dispose();
       iconTexture.dispose();
       renderer.dispose();
+      renderer.forceContextLoss();
       canvas.remove();
     }
 
@@ -549,13 +621,14 @@ document.fonts?.ready.then(scheduleStory);
   }
 
   const stageObserver = new IntersectionObserver(entries => {
-    inView = entries[0].isIntersecting;
+    if (options.signal.aborted) return;
+    inView = entries.at(-1).isIntersecting;
     if (!inView) {
       if (frame !== null) cancelAnimationFrame(frame);
       frame = null;
       return;
     }
-    current = target = readScroll();
+    snapToScroll = true;
     sampleScroll = true;
     queueFrame();
     enableModel();
@@ -574,6 +647,7 @@ document.fonts?.ready.then(scheduleStory);
     stageObserver.disconnect();
     mobileObserver.disconnect();
     if (desktopStory.matches) {
+      layoutChanged = true;
       stageObserver.observe(stage);
       return;
     }
@@ -601,26 +675,50 @@ document.fonts?.ready.then(scheduleStory);
 
   stage.addEventListener('pointermove', event => {
     if (!finePointer.matches || event.pointerType === 'touch') return;
-    const rect = stage.getBoundingClientRect();
-    mouseX = (event.clientX - rect.left) / rect.width * 2 - 1;
-    mouseY = (event.clientY - rect.top) / rect.height * 2 - 1;
+    pointerClientX = event.clientX;
+    pointerClientY = event.clientY;
+    pointerMoved = true;
     queueFrame();
-  });
+  }, options);
   stage.addEventListener('pointerleave', () => {
+    pointerMoved = false;
     mouseX = mouseY = 0;
     queueFrame();
-  });
-  desktopStory.addEventListener('change', syncLayout);
-  motionAllowed.addEventListener('change', syncLayout);
-  darkTheme.addEventListener('change', refreshPalette);
-  new MutationObserver(refreshPalette).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
-  addEventListener('scroll', resample, { passive: true });
-  addEventListener('resize', resample);
-  addEventListener('pageshow', resample);
-  document.fonts?.ready.then(resample);
-  syncLayout();
-})();
+  }, options);
+  desktopStory.addEventListener('change', syncLayout, options);
+  motionAllowed.addEventListener('change', syncLayout, options);
+  darkTheme.addEventListener('change', refreshPalette, options);
+  const paletteObserver = new MutationObserver(refreshPalette);
+  paletteObserver.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+  function invalidateLayout() {
+    layoutChanged = true;
+    resizeModel = true;
+    resample();
+  }
 
+  const layoutObserver = observeStoryLayout(section, invalidateLayout);
+  layoutObserver.observe(viewport);
+  addEventListener('scroll', resample, { ...options, passive: true });
+  addEventListener('resize', invalidateLayout, options);
+  addEventListener('pageshow', invalidateLayout, options);
+  document.fonts?.ready.then(invalidateLayout);
+  syncLayout();
+
+  return () => {
+    listeners.abort();
+    stageObserver.disconnect();
+    mobileObserver.disconnect();
+    paletteObserver.disconnect();
+    layoutObserver.disconnect();
+    if (frame !== null) cancelAnimationFrame(frame);
+    disableModel();
+  };
+}
+
+const projectStories = {
+  safevoice: mountSafeVoice,
+  salom: mountSalom
+};
 
 /**
  * CONTACT - Copy Email Functionality

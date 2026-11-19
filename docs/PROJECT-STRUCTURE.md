@@ -8,25 +8,27 @@ Este documento apresenta uma visão visual e detalhada de como o projeto está o
 My Portfolio/
 │
 ├── 📄 index.html                           # Página principal do portfólio
-├── 📄 portfolio - backup.html              # Backup da versão original
 ├── 📄 Meu Currículo.pdf                   # Currículo em PDF
 ├── 📄 .gitignore                          # Arquivos ignorados pelo Git
 │
 ├── 📁 assets/                              # Todos os recursos do site
 │   │
 │   ├── 📁 css/                            # Estilos organizados por responsabilidade
-│   │   ├── 🎨 variables.css              # [159 linhas] Variáveis CSS e design tokens
-│   │   ├── 🎨 base.css                   # [58 linhas] Reset e estilos fundamentais
-│   │   ├── 🎨 layout.css                 # [142 linhas] Estrutura e layouts
-│   │   ├── 🎨 components.css             # [184 linhas] Componentes reutilizáveis
-│   │   ├── 🎨 projects.css               # [486 linhas] Estilos específicos de projetos
-│   │   └── 🎨 animations.css             # [85 linhas] Animações e transições
+│   │   ├── 🎨 variables.css              # Variáveis CSS e design tokens
+│   │   ├── 🎨 base.css                   # Reset e estilos fundamentais
+│   │   ├── 🎨 layout.css                 # Estrutura e layouts
+│   │   ├── 🎨 components.css             # Componentes reutilizáveis
+│   │   ├── 🎨 projects.css               # Estilos específicos de projetos
+│   │   └── 🎨 animations.css             # Animações e transições
 │   │
 │   └── 📁 js/                             # Scripts JavaScript
-│       └── ⚡ scroll-animations.js        # [243 linhas] Lógica de scroll e animações
+│       ├── site-navigation.js            # Seção ativa e altura do cabeçalho
+│       ├── scroll-animations.js          # Palcos e cópia de e-mail
+│       └── projects.js                   # Vitrine, detalhes e navegação
 │
 └── 📁 docs/                                # Documentação completa
     ├── 📘 README.md                       # Documentação principal
+    ├── 📘 QUICK-START.md                  # Início rápido
     ├── 📘 ARCHITECTURE.md                 # Arquitetura técnica detalhada
     ├── 📘 CUSTOMIZATION.md                # Guia de customização
     └── 📘 PROJECT-STRUCTURE.md            # Este arquivo
@@ -36,28 +38,7 @@ My Portfolio/
 
 ## 📏 Tamanho dos Arquivos
 
-### Código Fonte
-
-| Arquivo | Linhas de Código | Propósito |
-|---------|------------------|-----------|
-| `index.html` | ~400 | Estrutura HTML completa |
-| `variables.css` | 159 | Tokens de design |
-| `base.css` | 58 | Reset e base |
-| `layout.css` | 142 | Layouts e estrutura |
-| `components.css` | 184 | Componentes UI |
-| `projects.css` | 486 | Features de projetos |
-| `animations.css` | 85 | Animações |
-| `scroll-animations.js` | 243 | Interatividade |
-| **TOTAL** | **~1.757** | **Linhas de código** |
-
-### Documentação
-
-| Arquivo | Palavras | Propósito |
-|---------|----------|-----------|
-| `README.md` | ~1.200 | Visão geral |
-| `ARCHITECTURE.md` | ~2.500 | Detalhes técnicos |
-| `CUSTOMIZATION.md` | ~2.800 | Guia de customização |
-| **TOTAL** | **~6.500** | **Palavras de documentação** |
+`index.html` carrega seis folhas de estilo e três scripts. Cada módulo tem um papel descrito na árvore acima. O currículo é um PDF servido diretamente pela página.
 
 ---
 
@@ -81,29 +62,9 @@ My Portfolio/
 
 ### Fluxo HTML → CSS → JS
 
-```
-index.html
-    ├─→ <head>
-    │     ├─→ Fonts (Google Fonts)
-    │     ├─→ variables.css
-    │     ├─→ base.css
-    │     ├─→ layout.css
-    │     ├─→ components.css
-    │     ├─→ projects.css
-    │     └─→ animations.css
-    │
-    ├─→ <body>
-    │     ├─→ SVG symbols
-    │     ├─→ Header (navegação)
-    │     ├─→ Main
-    │     │     ├─→ Hero section
-    │     │     ├─→ Projects sections
-    │     │     └─→ Experience section
-    │     └─→ Footer
-    │
-    └─→ </body>
-          └─→ scroll-animations.js (antes de </body>)
-```
+1. O `<head>` carrega as fontes e as seis folhas de estilo.
+2. O `<main>` contém Sobre (`#inicio`), Experiência, Stack, Projetos e Contato. O template dos cards e os templates dos palcos ficam junto de Projetos.
+3. Após o rodapé, `site-navigation.js` observa as seções. `scroll-animations.js` registra os controladores das demonstrações. `projects.js` usa esses controladores ao montar a seleção.
 
 ---
 
@@ -111,39 +72,13 @@ index.html
 
 ### Seções Principais (index.html)
 
-```
-┌─────────────────────────────────────┐
-│           HEADER (sticky)           │
-│  Brand | Nav: Projetos Experiência  │
-└─────────────────────────────────────┘
-┌─────────────────────────────────────┐
-│              HERO                   │
-│  • Título principal (3 linhas)      │
-│  • Descrição                        │
-│  • CTAs (Ver projetos, Contato)     │
-└─────────────────────────────────────┘
-┌─────────────────────────────────────┐
-│          PROJETO: SAFEVOICE         │
-│  • Header (título + meta)           │
-│  • Story (steps com scroll)         │
-│  • Stage interativo (SVG)           │
-└─────────────────────────────────────┘
-┌─────────────────────────────────────┐
-│       PROJETO: SALOM FINANCE        │
-│  • Header (título + descrição)      │
-│  • Steps com cenas interativas      │
-│  • Gráficos e visualizações         │
-└─────────────────────────────────────┘
-┌─────────────────────────────────────┐
-│           EXPERIÊNCIA               │
-│  • Timeline de trabalhos            │
-│  • Descrições e datas               │
-└─────────────────────────────────────┘
-┌─────────────────────────────────────┐
-│             FOOTER                  │
-│  • Copyright e informações          │
-└─────────────────────────────────────┘
-```
+| Seção | Componentes |
+|-------|-------------|
+| Sobre | Hero com apresentação e botões Ver projetos e Falar comigo |
+| Experiência | Linha do tempo profissional |
+| Stack | Linguagens, web, ferramentas e automação, segurança |
+| Projetos | Vitrine, setas, indicadores, painel e demonstração sob demanda |
+| Contato | Cards de E-mail, LinkedIn e GitHub e download centralizado do currículo |
 
 ---
 
@@ -193,6 +128,10 @@ index.html
 - `.stage` - Área de demonstração
 
 #### Projetos
+
+- `.project-heading` e `.project-pagination` — Setas e indicadores
+- `.project-body` — Conteúdo e dados do painel
+- `.project-animation-slot` — Seção “Veja funcionando”
 - `.story` - Container de história
 - `.steps` - Lista de passos
 - `.step` - Um passo individual
@@ -202,30 +141,9 @@ index.html
 
 ## 📱 Breakpoints Responsivos
 
-```
-Mobile First Approach:
-
-0px - 400px (25rem)
-├─ Mobile pequeno
-├─ Header empilhado
-└─ 1 coluna
-
-400px - 672px (42rem)
-├─ Mobile/Tablet
-├─ 1-2 colunas
-└─ Espaçamento ajustado
-
-672px - 848px (53rem)
-├─ Tablet/Desktop pequeno
-├─ 2 colunas
-└─ Mais espaçamento
-
-848px+ (53rem+)
-├─ Desktop completo
-├─ Scroll animations ativadas
-├─ Sticky stages
-└─ Layout expandido
-```
+- Até 36rem, o cabeçalho é empilhado e admite uma linha adicional de links.
+- Até 42rem, o painel e o contato usam uma coluna. As setas exibem só os glifos e mantêm os nomes acessíveis.
+- A partir de 53rem de largura e 38rem de altura, as histórias usam palco sticky quando o movimento é permitido. Em telas menores ou com movimento reduzido, mostram mini-palcos 2D.
 
 ---
 
@@ -257,29 +175,10 @@ Mobile First Approach:
 
 ## 🔄 Fluxo de Interação
 
-### Scroll-Based Animations
-
-```
-1. Página carrega
-   ↓
-2. DOMContentLoaded event
-   ↓
-3. initScrollAnimations()
-   ↓
-4. Intersection Observer setup
-   ↓
-5. User scrolls
-   ↓
-6. Observer detecta elemento visível
-   ↓
-7. Callback executa
-   ↓
-8. Atualiza CSS custom properties
-   ↓
-9. CSS anima transição
-   ↓
-10. Visual feedback
-```
+1. A vitrine é o estado inicial. Um link direto para um projeto abre o painel correspondente. Fechar o painel volta à vitrine.
+2. Setas, indicadores, teclado e swipe selecionam um projeto e atualizam histórico, foco e anúncio acessível.
+3. A troca desmonta o palco anterior. O novo palco, quando presente, aparece abaixo de **Veja funcionando**.
+4. Ao rolar, o controlador calcula o progresso pela posição dos passos. O menu destaca a seção abaixo do cabeçalho.
 
 ---
 
@@ -287,7 +186,7 @@ Mobile First Approach:
 
 ### Complexidade
 
-- **Seções**: 5 principais (Hero, SafeVoice, Salom, Experiência, Contato)
+- **Seções**: 5 principais (Sobre, Experiência, Stack, Projetos, Contato)
 - **Componentes reutilizáveis**: 12+
 - **Animações**: 8 principais
 - **Breakpoints**: 3 principais
@@ -373,9 +272,9 @@ Mobile First Approach:
 3. Teste mudando valores de `--scene-opacity`
 
 ### Para adicionar um projeto:
-1. Copie uma `<section>` existente no `index.html`
-2. Ajuste IDs e conteúdo
-3. Adicione estilos específicos em `projects.css`
+
+1. Acrescente o objeto à lista em `assets/js/projects.js` com um ID único.
+2. Use `animacao: null` para mostrar só o painel. O card, o painel, o indicador e o fragmento são gerados a partir da lista.
 
 ---
 

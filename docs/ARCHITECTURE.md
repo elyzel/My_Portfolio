@@ -131,83 +131,18 @@ animations.css (camada de polimento)
 
 ## 💻 Arquitetura JavaScript
 
-### Padrão: Vanilla JS com Observers
+| Arquivo | Responsabilidade |
+|---------|------------------|
+| `site-navigation.js` | Observa as seções logo abaixo do cabeçalho com `IntersectionObserver` e atualiza `aria-current="true"` no menu. Mede a altura real do cabeçalho com `ResizeObserver`. |
+| `scroll-animations.js` | Monta e desmonta os palcos e mantém a ação de copiar e-mail. Carrega Three.js r128 ao chegar ao palco do Salom em uma tela compatível. |
+| `projects.js` | Gera cards e painéis a partir de `#project-template`. Controla seleção, histórico, foco, setas, indicadores e swipe. |
 
-**Arquivo único**: `scroll-animations.js`
+#### Estado da seção Projetos
 
-#### Estrutura do Código
-
-```javascript
-// 1. Event Listeners
-document.addEventListener('DOMContentLoaded', () => {
-    initScrollAnimations();
-    initSalomFinanceScroll();
-});
-
-// 2. Funções de Inicialização
-function initScrollAnimations() { /* ... */ }
-function initSalomFinanceScroll() { /* ... */ }
-
-// 3. Funções de Atualização
-function updateStageState(step) { /* ... */ }
-function updateSalomScene(stepIndex, scenes) { /* ... */ }
-
-// 4. Funções de Animação
-function animateSalomScene(sceneIndex) { /* ... */ }
-function animateGoal(scene) { /* ... */ }
-
-// 5. Utilitários
-function debounce(func, wait) { /* ... */ }
-```
-
-#### Intersection Observer API
-
-**Por que usar?**
-- ✅ Performance superior a scroll listeners
-- ✅ Detecção precisa de visibilidade
-- ✅ Suporte nativo em navegadores modernos
-
-**Implementação**:
-
-```javascript
-const observer = new IntersectionObserver(
-    (entries) => {
-        entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-                // Elemento está visível
-                entry.target.setAttribute('aria-current', 'step');
-                updateStageState(entry.target);
-            }
-        });
-    },
-    {
-        threshold: 0.6,              // 60% visível
-        rootMargin: '-20% 0px -20% 0px'  // Área de detecção
-    }
-);
-```
-
-#### Gerenciamento de Estado
-
-**Estado via CSS Custom Properties**:
-
-```javascript
-// JavaScript manipula variáveis CSS
-scene.style.setProperty('--goal', '0.75');
-scene.style.setProperty('--opacity', '1');
-```
-
-```css
-/* CSS reage às variáveis */
-.sf-cube i {
-    height: calc(var(--goal, 0) * 100%);
-}
-```
-
-**Vantagens**:
-- ✅ CSS cuida da transição suave
-- ✅ JavaScript apenas atualiza valores
-- ✅ Separação de responsabilidades
+- A vitrine abre por padrão. Selecionar um card abre o painel, e fechar o painel volta à vitrine. Com vários projetos, Anterior e Próximo percorrem a lista de forma circular.
+- `history.pushState` atualiza o fragmento. `popstate` e `hashchange` restauram a seleção. `#salom` continua válido.
+- A abertura foca o título do painel. Esc devolve o foco ao card, e `.project-announcement` anuncia a seleção.
+- O painel entra na direção da navegação em 300 ms. O projeto anterior libera observadores, listeners e WebGL antes da montagem do próximo. Com movimento reduzido, a troca é imediata.
 
 ---
 
@@ -239,31 +174,14 @@ scene.style.setProperty('--opacity', '1');
 
 ## 📱 Estratégia Responsiva
 
-### Mobile-First Approach
+| Condição | Layout |
+|----------|--------|
+| Até `36rem` | Cabeçalho empilhado com quebra de links |
+| Até `42rem` | Detalhe e contato em uma coluna, setas de projeto compactas |
+| Acima de `42rem` | Detalhe em duas colunas, cards sociais lado a lado |
+| A partir de `53rem` × `38rem` | Palco sticky quando o movimento é permitido |
 
-**Base**: Design para mobile
-```css
-.wrap {
-    width: calc(100% - 2rem);  /* Mobile primeiro */
-}
-```
-
-**Enhancement**: Melhorias progressivas
-```css
-@media (min-width: 42rem) {
-    .wrap {
-        width: calc(100% - 3rem);  /* Mais espaço em telas maiores */
-    }
-}
-```
-
-### Breakpoints Estratégicos
-
-| Breakpoint | Tamanho | Propósito |
-|------------|---------|-----------|
-| `25rem` | 400px | Smartphones pequenos |
-| `42rem` | 672px | Tablets |
-| `53rem` | 848px | Desktop - scroll animations |
+Desktop e celular usam o mesmo painel. O swipe fica restrito ao painel.
 
 ### Unidades Responsivas
 
@@ -339,58 +257,22 @@ padding: max(1rem, env(safe-area-inset-top));
 
 ### ARIA Attributes
 
-```html
-<!-- Navegação -->
-<nav aria-label="Navegação principal">
-
-<!-- Seção de projeto -->
-<section aria-labelledby="safevoice-title">
-
-<!-- Estado atual -->
-<li aria-current="step">
-```
+- **Menu e indicadores** — `aria-current="true"` identifica a seção visível e o projeto selecionado em seus respectivos grupos.
+- **Cards e painel** — Os botões da vitrine apontam para o painel com `aria-controls` e refletem a seleção com `aria-expanded`. O título rotula o artigo.
+- **Anúncios e passos** — `.project-announcement` usa `aria-live="polite"`. O passo atual de cada história usa `aria-current="step"`.
 
 ### Respeito a Preferências
 
-```css
-@media (prefers-reduced-motion: reduce) {
-    * {
-        animation: none !important;
-        transition: none !important;
-    }
-}
-```
+Com `prefers-reduced-motion: reduce`, o painel troca sem animação, as histórias usam palcos 2D estáticos e os botões primários mudam de cor sem transição.
 
 ---
 
 ## 🔄 Fluxo de Dados
 
-### Scroll-Triggered State Management
-
-```
-User Scrolls
-    ↓
-Intersection Observer detecta
-    ↓
-JavaScript callback executa
-    ↓
-Atualiza CSS Custom Properties
-    ↓
-CSS anima transição
-    ↓
-Visual feedback ao usuário
-```
-
-### Exemplo Completo: SafeVoice
-
-```
-1. Usuário rola até step "Enviar localização"
-2. Observer detecta: entry.isIntersecting = true
-3. JS executa: updateStageState(step)
-4. JS adiciona classe: .stage-location
-5. CSS ativa: --location: 1
-6. SVG mostra: location pin (opacity animada)
-```
+1. `projects.js` abre a vitrine por padrão e resolve a seleção quando o fragmento aponta para um projeto.
+2. Se houver animação, o template correspondente é clonado em **Veja funcionando**. Sua montagem devolve uma função de desmontagem.
+3. `requestAnimationFrame` e `progress()` convertem a posição da linha de leitura na cena atual. As coordenadas dos passos são recalculadas quando o layout muda, inclusive após alterações de altura do primeiro passo.
+4. O palco do Salom tenta iniciar WebGL quando entra na área visível. As cenas 2D assumem quando o contexto ou o script do Three.js estiverem indisponíveis.
 
 ---
 

@@ -59,9 +59,10 @@
         <div class="wrap header-inner">
             <a class="brand" href="#inicio">Eliseu Marinho</a>
             <nav aria-label="Navegação principal">
-                <a href="#projetos">Projetos</a>
+                <a href="#inicio">Sobre</a>
                 <a href="#experiencia">Experiência</a>
                 <a href="#stack">Stack</a>
+                <a href="#projetos">Projetos</a>
                 <a href="#contato">Contato</a>
             </nav>
         </div>
@@ -83,16 +84,118 @@
             </div>
         </div>
 
-        <!-- SafeVoice Project Section -->
-        <section class="section" id="projetos" aria-labelledby="safevoice-title">
+        <!-- Experience Section -->
+        <section class="section" id="experiencia" aria-labelledby="experience-title">
+            <div class="wrap experience">
+                <h2 id="experience-title">Experiência</h2>
+                <ol class="timeline" role="list">
+                    <li class="timeline-item">
+                        <h3>Soldado</h3>
+                        <p class="meta"><span>Exército Brasileiro</span><span>1 ano e 4 meses</span></p>
+                        <p class="intro">Serviço militar obrigatório, com atuação como secretário. Organização de documentos, controle de registros e atendimento ao público.</p>
+                    </li>
+                    <li class="timeline-item">
+                        <h3>Jovem Aprendiz de TI</h3>
+                        <p class="meta"><span>Grupo Muffato</span><span>1 ano e 8 meses</span></p>
+                        <p class="intro">Suporte de TI ao público interno, manutenção de equipamentos e instalação de softwares corporativos.</p>
+                    </li>
+                    <li class="timeline-item timeline-current">
+                        <h3>Estagiário em Segurança da Informação</h3>
+                        <p class="meta"><span>Instituto Nacional de Telecomunicações (Inatel)</span><span class="period">Atual</span></p>
+                        <p class="intro">Análise de vulnerabilidades, homologação de aplicações web e desktop e automação de processos com Power Automate.</p>
+                    </li>
+                </ol>
+            </div>
+        </section>
+
+        <!-- Stack Section -->
+        <section class="section" id="stack" aria-labelledby="stack-title">
             <div class="wrap">
-                <div class="project-header">
-                    <div>
-                        <p class="meta"><span class="award">2º lugar na FETIN 2026</span><span>Python • Dart • Flutter</span></p>
-                        <h2 id="safevoice-title">SafeVoice</h2>
+                <h2 id="stack-title">Stack técnica</h2>
+                <dl class="stack-list">
+                    <div class="stack-row">
+                        <dt>Linguagens</dt>
+                        <dd><ul class="stack-tags" role="list"><li>C++</li><li>Python</li><li>Dart</li><li>Java (básico)</li></ul></dd>
                     </div>
-                    <p class="intro">Protótipo de segurança pessoal que envia a localização em tempo real e avisa contatos de confiança quando um alerta de emergência é acionado.</p>
+                    <div class="stack-row">
+                        <dt>Web</dt>
+                        <dd><ul class="stack-tags" role="list"><li>HTML</li><li>CSS</li><li>JavaScript (básico)</li></ul></dd>
+                    </div>
+                    <div class="stack-row">
+                        <dt>Ferramentas e automação</dt>
+                        <dd><ul class="stack-tags" role="list"><li>Git</li><li>GitHub</li><li>Power Automate</li><li>Power Apps</li><li>SharePoint</li></ul></dd>
+                    </div>
+                    <div class="stack-row">
+                        <dt>Segurança</dt>
+                        <dd><ul class="stack-tags" role="list"><li>Análise de vulnerabilidades</li><li>Homologação de aplicações web e desktop</li></ul></dd>
+                    </div>
+                </dl>
+            </div>
+        </section>
+
+        <!-- Projetos -->
+        <section class="section project-showcase" id="projetos" aria-labelledby="projects-title">
+            <div class="project-fragments" aria-hidden="true"><span id="salom"></span></div>
+            <div class="wrap">
+                <div class="project-heading">
+                    <button class="button project-previous" type="button" aria-label="Projeto anterior" aria-controls="project-detail-slot" hidden>
+                        <span aria-hidden="true">‹</span><span class="project-nav-label">Anterior</span>
+                    </button>
+                    <h2 id="projects-title">Projetos</h2>
+                    <button class="button project-next" type="button" aria-label="Próximo projeto" aria-controls="project-detail-slot" hidden>
+                        <span class="project-nav-label">Próximo</span><span aria-hidden="true">›</span>
+                    </button>
                 </div>
+                <div class="project-pagination" hidden>
+                    <p class="project-indicator"></p>
+                    <div class="project-dots" role="group" aria-label="Ir para projeto"></div>
+                </div>
+                <div class="project-layout">
+                    <div class="project-cards" role="group" aria-label="Escolher projeto"></div>
+                    <div class="project-detail-slot" id="project-detail-slot" hidden></div>
+                </div>
+                <section class="project-animation-slot" aria-labelledby="project-animation-title" hidden>
+                    <h4 id="project-animation-title">Veja funcionando</h4>
+                    <div class="project-animation-stage"></div>
+                </section>
+                <p class="project-announcement" aria-live="polite"></p>
+            </div>
+        </section>
+
+        <template id="project-template">
+            <div class="project-item">
+                <button class="project-card" type="button" aria-expanded="false">
+                    <span class="project-logo"></span>
+                    <span class="project-card-title"></span>
+                    <span class="project-summary"></span>
+                    <span class="project-chips"></span>
+                    <span class="project-badge" hidden></span>
+                    <span class="project-explore">Explorar <span aria-hidden="true">↗</span></span>
+                </button>
+                <article class="project-detail" hidden>
+                    <div class="project-detail-head">
+                        <div>
+                            <h3 tabindex="-1"></h3>
+                            <p class="project-meta" hidden></p>
+                        </div>
+                        <button class="project-close button" type="button" aria-label="Fechar projeto">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="project-body">
+                        <div class="project-info"></div>
+                        <div class="project-facts" hidden></div>
+                    </div>
+                    <div class="project-actions">
+                        <a class="button primary project-github" hidden>Ver código no GitHub</a>
+                        <span class="project-private" hidden>Repositório privado</span>
+                        <a class="button project-demo" hidden>Ver demo</a>
+                    </div>
+                </article>
+            </div>
+        </template>
+
+        <template id="story-safevoice"><div class="project-story">
                 <div class="story">
                     <ol class="steps" role="list">
                         <li class="step">
@@ -122,26 +225,8 @@
                         <figcaption>Acionar o alerta</figcaption>
                     </figure>
                 </div>
-            </div>
-        </section>
-
-        <!-- Salom Finance Project Section -->
-        <section class="section salom" id="salom" aria-labelledby="salom-title">
-            <div class="wrap">
-                <div class="project-header sf-header">
-                    <div>
-                        <p class="meta">Projeto pessoal · Aplicação web · Python</p>
-                        <h2 id="salom-title">Salom Finance</h2>
-                    </div>
-                    <div class="sf-intro">
-                        <p class="intro">Monte seu orçamento mensal e acompanhe quanto sobra depois das despesas. Registre transações manualmente ou importe um extrato em PDF. O Salom usa palavras-chave das descrições para categorizar gastos, como Mercado e Lazer.</p>
-                        <p class="intro">Registre também seus aportes em CDB e ações negociadas na bolsa e acompanhe a evolução do patrimônio investido em um painel mensal.</p>
-                        <div class="actions">
-                            <a class="button" href="https://github.com/elyzel/Salom_Finance">Ver código no GitHub</a>
-                            <span class="sf-sample">Dados fictícios</span>
-                        </div>
-                    </div>
-                </div>
+        </div></template>
+        <template id="story-salom"><div class="project-story salom">
                 <div class="sf-story">
                     <ol class="sf-steps" role="list">
                         <li class="sf-step">
@@ -371,53 +456,7 @@ k8*X#x9!c@24Q?&</pre>
                         <figcaption class="sf-caption"><span>Suas finanças, só suas.</span><span class="sf-count" aria-hidden="true">1 / 7</span></figcaption>
                     </figure>
                 </div>
-            </div>
-        </section>
-
-        <!-- Experience Section -->
-        <section class="section" id="experiencia" aria-labelledby="experience-title">
-            <div class="wrap experience">
-                <h2 id="experience-title">Experiência</h2>
-                <ol class="timeline" role="list">
-                    <li class="timeline-item">
-                        <h3>Soldado</h3>
-                        <p class="meta"><span>Exército Brasileiro</span><span>1 ano e 4 meses</span></p>
-                        <p class="intro">Serviço militar obrigatório, com atuação como secretário. Organização de documentos, controle de registros e atendimento ao público.</p>
-                    </li>
-                    <li class="timeline-item">
-                        <h3>Jovem Aprendiz de TI</h3>
-                        <p class="meta"><span>Grupo Muffato</span><span>1 ano e 8 meses</span></p>
-                        <p class="intro">Suporte de TI ao público interno, manutenção de equipamentos e instalação de softwares corporativos.</p>
-                    </li>
-                    <li class="timeline-item timeline-current">
-                        <h3>Estagiário em Segurança da Informação</h3>
-                        <p class="meta"><span>Instituto Nacional de Telecomunicações (Inatel)</span><span class="period">Atual</span></p>
-                        <p class="intro">Análise de vulnerabilidades, homologação de aplicações web e desktop e automação de processos com Power Automate.</p>
-                    </li>
-                </ol>
-            </div>
-        </section>
-
-        <!-- Stack Section -->
-        <section class="section" id="stack" aria-labelledby="stack-title">
-            <div class="wrap">
-                <h2 id="stack-title">Stack técnica</h2>
-                <dl class="stack-list">
-                    <div class="stack-row">
-                        <dt>Linguagens</dt>
-                        <dd><ul class="stack-tags" role="list"><li>C++</li><li>Python</li><li>Dart</li><li>Java (básico)</li></ul></dd>
-                    </div>
-                    <div class="stack-row">
-                        <dt>Web</dt>
-                        <dd><ul class="stack-tags" role="list"><li>HTML</li><li>CSS</li><li>JavaScript (básico)</li></ul></dd>
-                    </div>
-                    <div class="stack-row">
-                        <dt>Ferramentas e automação</dt>
-                        <dd><ul class="stack-tags" role="list"><li>Git</li><li>GitHub</li><li>Power Automate</li><li>Power Apps</li><li>SharePoint</li></ul></dd>
-                    </div>
-                </dl>
-            </div>
-        </section>
+        </div></template>
 
         <!-- Contact Section -->
         <section class="section contact" id="contato" aria-labelledby="contact-title">
@@ -439,11 +478,20 @@ k8*X#x9!c@24Q?&</pre>
                             <span class="contact-value">Eliseu Marinho</span>
                         </span>
                     </a>
+                    <a class="contact-card contact-social" href="https://github.com/elyzel">
+                        <span class="contact-icon"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .75a11.25 11.25 0 0 0-3.56 21.92c.56.1.77-.24.77-.54v-2.1c-3.13.68-3.79-1.33-3.79-1.33-.51-1.3-1.25-1.65-1.25-1.65-1.02-.7.08-.69.08-.69 1.13.08 1.72 1.16 1.72 1.16 1 1.72 2.63 1.22 3.27.93.1-.73.39-1.22.71-1.5-2.5-.28-5.13-1.25-5.13-5.56 0-1.23.44-2.23 1.16-3.02-.12-.29-.5-1.44.11-3 0 0 .95-.3 3.1 1.15a10.8 10.8 0 0 1 5.64 0c2.15-1.46 3.09-1.15 3.09-1.15.62 1.56.24 2.71.12 3 .72.79 1.16 1.79 1.16 3.02 0 4.32-2.64 5.27-5.15 5.55.41.35.77 1.03.77 2.08v3.11c0 .3.2.65.78.54A11.25 11.25 0 0 0 12 .75Z"/></svg></span>
+                        <span class="contact-details">
+                            <span class="contact-label">GitHub</span>
+                            <span class="contact-value">elyzel</span>
+                        </span>
+                    </a>
                 </div>
                 <p class="contact-copy-status" role="status" aria-atomic="true"></p>
                 <div class="actions contact-actions">
-                    <a class="button primary" href="Meu%20Curr%C3%ADculo.pdf" download="Eliseu-Marinho-Curriculo.pdf">Baixar currículo (PDF)</a>
-                    <a class="contact-github" href="https://github.com/elyzel">GitHub</a>
+                    <a class="button primary" href="Meu%20Curr%C3%ADculo.pdf" download="Eliseu-Marinho-Curriculo.pdf">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m-5-5 5 5 5-5M4 16v4h16v-4"/></svg>
+                        Baixar currículo (PDF)
+                    </a>
                 </div>
             </div>
         </section>
@@ -457,6 +505,8 @@ k8*X#x9!c@24Q?&</pre>
     </footer>
 
     <!-- Scripts -->
+    <script src="assets/js/site-navigation.js"></script>
     <script src="assets/js/scroll-animations.js"></script>
+    <script src="assets/js/projects.js"></script>
 </body>
 </html>
