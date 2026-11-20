@@ -21,7 +21,7 @@ Este é um portfólio profissional desenvolvido com HTML5, CSS3 e JavaScript van
 ### Características principais:
 
 - ✅ **Design Responsivo**: Adapta-se perfeitamente a todos os tamanhos de tela
-- ✅ **Tema Claro/Escuro**: Suporte automático baseado na preferência do sistema
+- ✅ **Tema Claro/Escuro**: Alternância manual, preferência do sistema e escolha sincronizada entre abas
 - ✅ **Acessibilidade**: Seguindo padrões WCAG com navegação por teclado e leitores de tela
 - ✅ **Performance**: Carregamento rápido e otimizado
 - ✅ **Animações Suaves**: Experiência visual agradável respeitando preferências de movimento
@@ -47,7 +47,8 @@ My Portfolio/
 │   │   └── animations.css         # Animações e transições
 │   │
 │   └── js/                         # Scripts JavaScript
-│       └── scroll-animations.js   # Animações baseadas em scroll
+│       ├── scroll-animations.js   # Animações baseadas em scroll
+│       └── theme-toggle.js       # Alternância e persistência de tema
 │
 └── docs/                           # Documentação
     ├── README.md                   # Este arquivo

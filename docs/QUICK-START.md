@@ -75,6 +75,8 @@ python -m http.server 8000
 
 **Salve** e **recarregue** → Todos os links e destaques mudaram de cor! 🎨
 
+O seletor na navegação alterna entre os temas claro e escuro. A escolha fica salva neste navegador; sem escolha manual, o site acompanha a aparência do sistema.
+
 ---
 
 ## 📝 Passo 4: Personalizar o Hero (3 minutos)

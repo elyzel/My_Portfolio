@@ -150,7 +150,6 @@ function mountSalom(section) {
   const finalCipher = cipher.textContent;
   const lock = scenes[6];
   const finePointer = matchMedia('(hover: hover) and (pointer: fine)');
-  const darkTheme = matchMedia('(prefers-color-scheme: dark)');
   const currency = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL', maximumFractionDigits: 0 });
   const barProfiles = [
     [24, 60, 38, 57, 45, 33],
@@ -687,7 +686,6 @@ function mountSalom(section) {
   }, options);
   desktopStory.addEventListener('change', syncLayout, options);
   motionAllowed.addEventListener('change', syncLayout, options);
-  darkTheme.addEventListener('change', refreshPalette, options);
   const paletteObserver = new MutationObserver(refreshPalette);
   paletteObserver.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
   function invalidateLayout() {

@@ -16,7 +16,7 @@ Este é um portfólio profissional desenvolvido seguindo as **melhores práticas
 - ✅ **Design Responsivo**: Funciona perfeitamente em todos os dispositivos
 - ✅ **Acessibilidade**: WCAG 2.1 Level AA
 - ✅ **Performance**: Carregamento rápido e otimizado
-- ✅ **Tema Claro/Escuro**: Suporte automático
+- ✅ **Tema Claro/Escuro**: Preferência do sistema, escolha manual persistida e sincronização entre abas
 - ✅ **Vanilla JS** — Three.js é carregado sob demanda para o palco do Salom
 
 ### 📋 Seções do Portfólio
@@ -123,7 +123,7 @@ Use Anterior, Próximo, os indicadores ou as setas do teclado com foco na seçã
 - ⚡ **IntersectionObserver** — Destaca a seção ativa, detecta a entrada dos palcos e pausa a chuva fora do hero
 - 📱 **Mobile First**: Design responsivo
 - ♿ **A11Y**: Navegação por teclado e leitores de tela
-- 🌓 **Auto Theme**: Tema claro/escuro automático
+- 🌓 **Temas**: Alternância manual, preferência do sistema e escolha sincronizada entre abas
 - 🎭 **CSS Variables**: Customização fácil
 
 ---
@@ -248,7 +248,7 @@ O cabeçalho destaca a seção visível. A altura medida compensa a rolagem por 
 ## 📊 Estatísticas
 
 - **Arquivos CSS**: 6
-- **Arquivos JS**: 5
+- **Arquivos JS**: 6
 - **Componentes**: 12+
 - **Seções**: 5
 - **Documentação**: ~6.500 palavras

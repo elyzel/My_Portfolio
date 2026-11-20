@@ -40,15 +40,20 @@ header {
 /* Navegação */
 nav {
     display: flex;
+    align-items: center;
     flex-wrap: wrap;
     gap: .25rem clamp(.55rem, 2vw, 1.5rem);  /* Espaçamento responsivo */
 }
 
 nav a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.75rem;
     color: var(--muted);
     text-decoration: none;
     font-weight: 600;
     font-size: clamp(.8125rem, 2.2vw, .9375rem);
+    line-height: 1.2;
 }
 
 nav a:hover,
@@ -135,5 +140,10 @@ footer {
         align-items: flex-start;
         gap: .15rem;
         padding-block: .45rem;
+    }
+
+    nav {
+        width: 100%;
+        align-content: center;
     }
 }

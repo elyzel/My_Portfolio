@@ -76,21 +76,25 @@ Edite os quatro `.contact-card` de `#contato` em `index.html`.
 }
 ```
 
-### Criando Seu Tema Escuro
+### Cores do tema escuro
+
+Edite os tokens em `:root[data-theme="dark"]` dentro de `assets/css/variables.css`. O botão de tema exibe o ícone do tema ativo e usa `--accent` como cor. `color-scheme` também é definido por tema.
+
+O tema inicial vem da chave `theme` no `localStorage`; sem valor salvo, acompanha `prefers-color-scheme` até uma escolha manual.
 
 ```css
-@media (prefers-color-scheme: dark) {
-    :root {
-        /* Inverta as cores de fundo e texto */
-        --bg: #121e1d;          /* Fundo escuro */
-        --panel: #192926;       /* Painéis escuros */
-        --ink: #ecf6f2;         /* Texto claro */
-        --muted: #aec3bc;       /* Texto secundário claro */
-        --line: #374d47;        /* Bordas sutis */
-        --accent: #94e4ca;      /* Destaque mais claro */
-    }
+:root[data-theme="dark"] {
+    color-scheme: dark;
+    --bg: #121e1d;
+    --panel: #192926;
+    --ink: #ecf6f2;
+    --muted: #aec3bc;
+    --line: #607b72;
+    --accent: #94e4ca;
 }
 ```
+
+O tamanho do botão fica no bloco `THEME TOGGLE` de `assets/css/components.css` (`.theme-toggle`, largura e altura); a duração da revelação circular fica em `assets/js/theme-toggle.js` (760 ms).
 
 ### Paletas de Cores Sugeridas
 

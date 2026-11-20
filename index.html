@@ -4,7 +4,18 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
     <meta name="description" content="Projetos e experiência de Eliseu Marinho em desenvolvimento de software, segurança da informação e automação.">
+    <meta name="theme-color" content="#f3f5f2">
     <title>Eliseu Marinho | Portfólio</title>
+
+    <script>
+        (() => {
+            let saved;
+            try { saved = localStorage.getItem('theme'); } catch {}
+            const theme = saved === 'dark' || saved === 'light' ? saved :
+                matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+            document.documentElement.dataset.theme = theme;
+        })();
+    </script>
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -64,6 +75,10 @@
                 <a href="#stack">Stack</a>
                 <a href="#projetos">Projetos</a>
                 <a href="#contato">Contato</a>
+                <button class="theme-toggle" type="button" role="switch" aria-checked="false" aria-label="Alternar tema claro/escuro" title="Alternar tema claro/escuro">
+                    <svg class="theme-icon theme-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="3.5"/><path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"/></svg>
+                    <svg class="theme-icon theme-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 15.2A8.5 8.5 0 0 1 8.8 3.5 8.7 8.7 0 1 0 20.5 15.2Z"/></svg>
+                </button>
             </nav>
         </div>
     </header>
@@ -525,6 +540,7 @@ k8*X#x9!c@24Q?&</pre>
 
     <!-- Scripts -->
     <script src="assets/js/site-navigation.js"></script>
+    <script src="assets/js/theme-toggle.js"></script>
     <script src="assets/js/scroll-animations.js"></script>
     <script src="assets/js/projects.js"></script>
     <script src="assets/js/digital-rain.js" defer></script>

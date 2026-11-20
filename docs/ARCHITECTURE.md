@@ -134,6 +134,7 @@ animations.css (camada de polimento)
 | Arquivo | Responsabilidade |
 |---------|------------------|
 | `site-navigation.js` | Observa as seções logo abaixo do cabeçalho com `IntersectionObserver` e atualiza `aria-current="true"` no menu. Mede a altura real do cabeçalho com `ResizeObserver`. |
+| `theme-toggle.js` | Alterna o tema, persiste a escolha em `localStorage`, acompanha a preferência do sistema até uma escolha manual e sincroniza abas. Usa View Transitions com revelação circular quando disponível. |
 | `scroll-animations.js` | Monta e desmonta os palcos. Carrega Three.js r128 ao chegar ao palco do Salom em uma tela compatível. |
 | `projects.js` | Gera cards e painéis a partir de `#project-template`. Controla seleção, histórico, foco, setas, indicadores e swipe. |
 | `digital-rain.js` | Desenha o fundo do hero em um canvas 2D decorativo, carregado com `defer`. |
@@ -160,27 +161,9 @@ O `ResizeObserver` agenda a medição após 150 ms. `IntersectionObserver` e `vi
 
 ## 🎭 Sistema de Temas
 
-### Tema Claro/Escuro Automático
+### Tema Claro/Escuro
 
-**Implementação via media query**:
-
-```css
-:root {
-    --bg: #f3f5f2;  /* Claro por padrão */
-}
-
-@media (prefers-color-scheme: dark) {
-    :root {
-        --bg: #121e1d;  /* Escuro no tema escuro */
-    }
-}
-```
-
-**Fluxo**:
-1. Sistema operacional define preferência
-2. Browser detecta via `prefers-color-scheme`
-3. CSS aplica variáveis correspondentes
-4. Sem JavaScript necessário!
+As paletas ficam em `variables.css` sob `:root[data-theme="light"]` e `:root[data-theme="dark"]`. Um script curto no `<head>` consulta `localStorage` e a preferência do sistema antes de carregar o CSS, evitando o flash do tema errado. O botão atualiza `aria-checked` e a cor da barra do navegador. Sem escolha salva, mudanças em `prefers-color-scheme` são aplicadas em tempo real; escolhas manuais são persistidas e o evento `storage` mantém as outras abas em sincronia. A troca usa View Transitions com revelação circular quando disponível, com transição de cores como fallback. Movimento reduzido simplifica e encurta a troca.
 
 ---
 

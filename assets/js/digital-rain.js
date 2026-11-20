@@ -25,7 +25,6 @@
   const text = [hero.querySelector('h1'), hero.querySelector('.hero > p'), hero.querySelector('.hero .actions')];
   const calmBounds = new Float32Array(text.length * 4);
   const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
-  const darkTheme = matchMedia('(prefers-color-scheme: dark)');
   const mobile = matchMedia('(pointer: coarse), (width < 42rem)');
   const listeners = new AbortController();
   const options = { signal: listeners.signal };
@@ -33,6 +32,7 @@
   let context;
   let resizeObserver;
   let intersectionObserver;
+  let themeObserver;
   let resizeTimer;
   let frame = null;
   let inView = false;
@@ -58,6 +58,7 @@
     listeners.abort();
     resizeObserver?.disconnect();
     intersectionObserver?.disconnect();
+    themeObserver?.disconnect();
     canvas.hidden = true;
   }
 
@@ -306,7 +307,8 @@
       syncSafely();
     }, { rootMargin: '32px 0px' });
     intersectionObserver.observe(hero);
-    darkTheme.addEventListener('change', refresh, options);
+    themeObserver = new MutationObserver(refresh);
+    themeObserver.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
     reducedMotion.addEventListener('change', () => {
       if (reducedMotion.matches) {
         for (const layer of layers) {

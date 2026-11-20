@@ -26,7 +26,8 @@ My Portfolio/
 │       ├── scroll-animations.js          # Palcos das demonstrações
 │       ├── projects.js                   # Vitrine, detalhes e navegação
 │       ├── digital-rain.js               # Canvas decorativo do hero
-│       └── contact.js                    # Botões de cópia do contato
+│       ├── contact.js                    # Botões de cópia do contato
+│       └── theme-toggle.js               # Alternância, persistência e sincronização do tema
 │
 └── 📁 docs/                                # Documentação completa
     ├── 📘 README.md                       # Documentação principal
@@ -66,7 +67,7 @@ My Portfolio/
 
 1. O `<head>` carrega as fontes e as seis folhas de estilo.
 2. O `<main>` contém Sobre (`#inicio`), Experiência, Stack, Projetos e Contato. O template dos cards e os templates dos palcos ficam junto de Projetos.
-3. Após o rodapé, `site-navigation.js` observa as seções. `scroll-animations.js` registra os controladores das demonstrações. `projects.js` usa esses controladores ao montar a seleção. `digital-rain.js` é carregado com `defer` e controla o canvas do hero. `contact.js` gerencia os botões de cópia e os anúncios de sucesso ou erro.
+3. Um script curto no `<head>` aplica o tema antes do primeiro desenho. Após o rodapé, `site-navigation.js` observa as seções; `theme-toggle.js` controla alternância, persistência e sincronização; `scroll-animations.js` registra os controladores das demonstrações; `projects.js` monta a seleção; `digital-rain.js` controla o canvas do hero; `contact.js` gerencia a cópia dos contatos.
 
 ---
 

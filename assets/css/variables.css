@@ -5,15 +5,14 @@
  */
 
 :root {
-    /* Esquema de cores - suporte para tema claro e escuro */
-    color-scheme: light dark;
+    color-scheme: light;
     
     /* === CORES - TEMA CLARO === */
     --bg: #f3f5f2;              /* Cor de fundo principal */
     --panel: #fff;               /* Cor de painéis e cards */
     --ink: #102725;              /* Cor do texto principal */
     --muted: #4a615d;            /* Cor de texto secundário */
-    --line: #c8d6d1;             /* Cor de bordas e linhas */
+    --line: #738d83;             /* Bordas com contraste para controles e divisores */
     --button-hover-bg: #086957;
     --button-hover-text: #ffffff;
     --accent: #086957;           /* Cor de destaque/acento */
@@ -25,7 +24,7 @@
     --stage: #102b29;            /* Fundo da área de stage */
     --stage-text: #ebfaf3;       /* Texto no stage */
     --stage-muted: #b5d1c8;      /* Texto secundário no stage */
-    --stage-line: #42655d;       /* Linhas no stage */
+    --stage-line: #58786d;       /* Linhas no stage */
     
     /* Cores de sinalização */
     --signal: #ff9d8f;           /* Cor de alerta/sinal */
@@ -39,22 +38,23 @@
     --display: 'Bricolage Grotesque', 'Instrument Sans', system-ui, sans-serif;  /* Fonte para títulos */
 }
 
-/* === TEMA ESCURO === */
-@media (prefers-color-scheme: dark) {
-    :root {
-        /* Cores invertidas para modo escuro */
-        --bg: #121e1d;
-        --panel: #192926;
-        --ink: #ecf6f2;
-        --muted: #aec3bc;
-        --line: #374d47;
-        --accent: #94e4ca;
-        
-        --rain-color: var(--mint);
-        --rain-alpha-scale: 1;
+/* O tema inicial é definido pelo script no <head> e persistido pelo usuário. */
+:root[data-theme="dark"] {
+    color-scheme: dark;
+    --bg: #121e1d;
+    --panel: #192926;
+    --ink: #ecf6f2;
+    --muted: #aec3bc;
+    --line: #607b72;
+    --accent: #94e4ca;
+    --button-hover-bg: #94e4ca;
+    --button-hover-text: #102725;
+    --rain-color: var(--mint);
+    --rain-alpha-scale: 1;
+}
 
-        /* Stage e outras cores mantêm os mesmos valores */
-    }
+:root[data-theme="light"] {
+    color-scheme: light;
 }
 
 /* === VARIÁVEIS ESPECÍFICAS DE PROJETOS === */

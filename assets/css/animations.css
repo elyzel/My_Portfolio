@@ -134,24 +134,75 @@ nav a {
     mask-image: linear-gradient(to bottom, #000 0%, #000 55%, transparent 100%);
 }
 
-@media (prefers-color-scheme: dark) {
-    .hero-backdrop::before,
-    .hero-backdrop::after {
-        position: absolute;
-        inset: 0;
-        pointer-events: none;
-        content: "";
+html[data-theme="dark"] .hero-backdrop {
+    --hero-glow: var(--mint);
+}
+
+html[data-theme="dark"] .hero-backdrop::before,
+html[data-theme="dark"] .hero-backdrop::after {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    content: "";
+}
+
+html[data-theme="dark"] .hero-backdrop::before {
+    background:
+        radial-gradient(ellipse at 0% 25%, color-mix(in srgb, var(--hero-glow) 2.5%, transparent), transparent 62%),
+        radial-gradient(ellipse at 100% 16%, color-mix(in srgb, var(--hero-glow) 2.5%, transparent), transparent 52%),
+        radial-gradient(ellipse at 30% 47%, color-mix(in srgb, var(--hero-glow) 2%, transparent), transparent 53%);
+}
+
+html[data-theme="dark"] .hero-backdrop::after {
+    opacity: .03;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='144' height='144'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.78' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Theme changes use the same gentle fallback where View Transitions are absent. */
+html.theme-fallback,
+html.theme-fallback body,
+html.theme-fallback body > header,
+html.theme-fallback body > footer,
+html.theme-fallback .section,
+html.theme-fallback .contact-card,
+html.theme-fallback .stack-tags li,
+html.theme-fallback .project-detail,
+html.theme-fallback .button {
+    transition: background-color .4s ease, color .4s ease, border-color .4s ease;
+}
+
+html.theme-fallback body {
+    background-color: var(--bg);
+    color: var(--ink);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html.theme-fallback,
+    html.theme-fallback body,
+    html.theme-fallback body > header,
+    html.theme-fallback body > footer,
+    html.theme-fallback .section,
+    html.theme-fallback .contact-card,
+    html.theme-fallback .stack-tags li,
+    html.theme-fallback .project-detail,
+    html.theme-fallback .button {
+        transition-duration: .18s;
+    }
+}
+
+@supports (view-transition-name: root) {
+    ::view-transition-old(root),
+    ::view-transition-new(root) {
+        animation: none;
+        mix-blend-mode: normal;
     }
 
-    .hero-backdrop::before {
-        background:
-            radial-gradient(ellipse at 0% 25%, color-mix(in srgb, var(--mint) 2.5%, transparent), transparent 62%),
-            radial-gradient(ellipse at 100% 16%, color-mix(in srgb, var(--mint) 2.5%, transparent), transparent 52%),
-            radial-gradient(ellipse at 30% 47%, color-mix(in srgb, var(--mint) 2%, transparent), transparent 53%);
-    }
+    ::view-transition-old(root) { z-index: 1; }
+    ::view-transition-new(root) { z-index: 2; }
+}
 
-    .hero-backdrop::after {
-        opacity: .03;
-        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='144' height='144'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.78' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-    }
+@media (prefers-reduced-motion: reduce) {
+    ::view-transition-group(root),
+    ::view-transition-old(root),
+    ::view-transition-new(root) { animation: none !important; }
 }
